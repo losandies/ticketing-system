@@ -1,9 +1,11 @@
 import React from 'react';
-import logo from '../assets/images/logo1.png';
+import logo from '../../assets/images/logo1.png';
 import { HiSearch } from 'react-icons/hi';
 import { ImHome } from 'react-icons/im';
 import { FaTasks } from 'react-icons/fa';
 import { BsClockFill } from 'react-icons/bs';
+
+import TeamItem from './TeamItem';
 
 const Sidebar = () => {
 	return (
@@ -41,7 +43,7 @@ const Sidebar = () => {
 					}}
 				/>
 			</div>
-			<div className="page-navigation flex items-center">
+			<div className="page-navigation flex items-center mb-12">
 				<ul className="w-full">
 					<li className="flex text-xl my-4 p-4 bg-gray-300 bg-opacity-70 rounded-lg">
 						<ImHome
@@ -63,6 +65,12 @@ const Sidebar = () => {
 					</li>
 				</ul>
 			</div>
+			<div className="teams flex flex-col ml-4 mb-5">
+				<p className="text-xl ">TEAMS</p>
+			</div>
+			<TeamItem team="Refactoring UI" />
+			<TeamItem team="Tailwind CSS" />
+			<TeamItem team="NothingWorks" />
 		</div>
 	);
 };

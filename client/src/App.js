@@ -14,7 +14,7 @@ function App() {
 	return (
 		<>
 			<Router>
-				<div className="max-h-screen">
+				<div>
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/register" element={<Register />} />
