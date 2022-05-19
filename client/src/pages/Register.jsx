@@ -28,7 +28,7 @@ const Register = () => {
 		}
 
 		if (isSuccess || user) {
-			navigate('/');
+			navigate('/dashboard');
 		}
 
 		dispatch(reset());
@@ -139,6 +139,7 @@ const Register = () => {
 							<button
 								className="btn btn-primary text-white py-2 px-4 rounded"
 								type="submit"
+								onClick={onSubmit}
 							>
 								Sign Up
 							</button>

@@ -4,7 +4,9 @@
 	"description": "",
 	"main": "server.js",
 	"scripts": {
-		"server": "nodemon backend/server.js"
+		"server": "nodemon backend/server.js",
+		"client": "npm start --prefix client",
+		"dev": "concurrently \"nodemon backend/server.js\" \"npm run client\""
 	},
 	"author": "",
 	"license": "ISC",

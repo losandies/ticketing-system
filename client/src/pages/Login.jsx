@@ -105,6 +105,7 @@ const Login = () => {
 							<button
 								className="btn btn-primary text-white font-bold py-2 px-4 rounded "
 								type="submit"
+								onClick={onSubmit}
 							>
 								Sign In
 							</button>

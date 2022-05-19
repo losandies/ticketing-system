@@ -20,6 +20,12 @@ const userSchema = mongoose.Schema(
 			required: true,
 			default: false,
 		},
+		assignedTickets: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'Ticket',
+			},
+		],
 	},
 
 	{
