@@ -20,6 +20,18 @@ const userSchema = mongoose.Schema(
 			required: true,
 			default: false,
 		},
+		projects: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'Project',
+			},
+		],
+		createdTickets: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'Ticket',
+			},
+		],
 		assignedTickets: [
 			{
 				type: mongoose.Schema.Types.ObjectId,

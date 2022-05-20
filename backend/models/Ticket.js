@@ -12,16 +12,18 @@ const ticketSchema = mongoose.Schema(
 		},
 		status: {
 			type: String,
-			enum: ['New', 'In Progress', 'Completed'],
-			default: 'new',
-		},
-		deadline: {
-			type: Date,
+			enum: ['new', 'in progress', 'completed'],
 			required: true,
+			default: 'new',
 		},
 		project: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Project',
+			required: true,
+		},
+		deadline: {
+			type: String,
+			required: true,
 		},
 		user: {
 			type: mongoose.Schema.Types.ObjectId,
@@ -40,4 +42,4 @@ const ticketSchema = mongoose.Schema(
 	}
 );
 
-module.exports = mongoose.model(ticketSchema, 'Ticket');
+module.exports = mongoose.model('Ticket', ticketSchema);

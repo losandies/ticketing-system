@@ -12,6 +12,9 @@ const createProject = asyncHandler(async (req, res) => {
 		throw new Error('Please include the required fields');
 	}
 
+	const user = await User.findById(req.user._id);
+	console.log(req.user);
+
 	const project = await Project.create({
 		name,
 		description,
@@ -19,14 +22,14 @@ const createProject = asyncHandler(async (req, res) => {
 		user: req.user._id,
 	});
 
+	console.log(req.user);
+
+	// user.projects.unshift(project);
+
+	// await user.save()
+
 	if (project) {
-		res.status(201).json({
-			_id: project._id,
-			name: project.name,
-			description: project.description,
-			deadline: project.deadline,
-			user: project.user,
-		});
+		res.status(201).json(project);
 	} else {
 		res.status(400);
 		throw new Error('Invalid Project Data');
@@ -34,7 +37,7 @@ const createProject = asyncHandler(async (req, res) => {
 });
 
 const getProjects = asyncHandler(async (req, res) => {
-	const projects = await Project.find();
+	const projects = await Project.find().populate('tickets');
 
 	if (projects) {
 		res.status(200).json(projects);
