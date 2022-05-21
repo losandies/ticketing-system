@@ -20,7 +20,7 @@ const projectSchema = mongoose.Schema(
 				ref: 'Ticket',
 			},
 		],
-		user: {
+		createdBy: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User',
 		},

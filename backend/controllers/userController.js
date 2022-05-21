@@ -53,7 +53,9 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
 	const { email, password } = req.body;
 
-	const user = await User.findOne({ email });
+	const user = await User.findOne({ email }).populate(
+		'createdTickets assignedTickets'
+	);
 
 	if (user) {
 		const match = await bcrypt.compare(password, user.password);
@@ -63,6 +65,8 @@ const loginUser = asyncHandler(async (req, res) => {
 				_id: user._id,
 				name: user.name,
 				email: user.email,
+				assignedTickets: user.assignedTickets,
+				createdTickets: user.createdTickets,
 				token: generateToken(user._id),
 			});
 		}

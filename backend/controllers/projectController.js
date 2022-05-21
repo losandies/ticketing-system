@@ -19,7 +19,7 @@ const createProject = asyncHandler(async (req, res) => {
 		name,
 		description,
 		deadline,
-		user: req.user._id,
+		createdBy: req.user._id,
 	});
 
 	console.log(req.user);
@@ -37,7 +37,9 @@ const createProject = asyncHandler(async (req, res) => {
 });
 
 const getProjects = asyncHandler(async (req, res) => {
-	const projects = await Project.find().populate('tickets');
+	const projects = await Project.find()
+		.populate('tickets')
+		.populate('createdBy', 'name');
 
 	if (projects) {
 		res.status(200).json(projects);
@@ -47,7 +49,9 @@ const getProjects = asyncHandler(async (req, res) => {
 });
 
 const getOneProject = asyncHandler(async (req, res) => {
-	const project = await Project.findById(req.params.id);
+	const project = await Project.findById(req.params.id)
+		.populate('tickets')
+		.populate('createdBy', 'name');
 
 	if (project) {
 		res.status(200).json(project);
