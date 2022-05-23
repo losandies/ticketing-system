@@ -44,7 +44,8 @@ const getProjects = asyncHandler(async (req, res) => {
 	if (projects) {
 		res.status(200).json(projects);
 	} else {
-		return res.status(400).json({ msg: 'No Projects Found' });
+		res.status(400);
+		throw new Error('Could not create project');
 	}
 });
 
