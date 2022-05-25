@@ -7,13 +7,12 @@ import Tasks from './dashpages/Tasks';
 import Recent from './dashpages/Recent';
 import Spinner from '../components/Spinner';
 
-const Dashboard = () => {
+const MyTasks = () => {
 	const { currentPage } = useSelector((state) => state.navigation);
 
 	return (
-		<div className="flex max-h-screen">
+		<div className="flex">
 			<Sidebar />
-
 			<Home />
 			{/* {(() => {
 				if (currentPage === 'home') {
@@ -28,4 +27,4 @@ const Dashboard = () => {
 	);
 };
 
-export default Dashboard;
+export default MyTasks;

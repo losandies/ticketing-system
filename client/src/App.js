@@ -11,6 +11,7 @@ import PrivateRoute from './components/PrivateRoute';
 import { ToastContainer } from 'react-toastify';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
+import MyTasks from './pages/MyTasks';
 
 function App() {
 	return (
@@ -23,6 +24,9 @@ function App() {
 						<Route path="/login" element={<Login />} />
 						<Route path="/dashboard" element={<PrivateRoute />}>
 							<Route path="/dashboard" element={<Dashboard />} />
+						</Route>
+						<Route path="/mytasks" element={<PrivateRoute />}>
+							<Route path="/mytasks" element={<MyTasks />} />
 						</Route>
 						<Route path="/project/:projectId" element={<PrivateRoute />}>
 							<Route path="/project/:projectId" element={<Project />} />

@@ -14,7 +14,7 @@ const getTickets = asyncHandler(async (req, res) => {
 });
 
 const createTicket = asyncHandler(async (req, res) => {
-	const { name, description, deadline } = req.body;
+	const { name, description, deadline, severity } = req.body;
 
 	if (!name || !description || !deadline) {
 		res.status(400);
@@ -28,6 +28,7 @@ const createTicket = asyncHandler(async (req, res) => {
 		deadline,
 		createdBy: req.user._id,
 		project: req.params.projectId,
+		severity,
 	});
 
 	if (ticket) {

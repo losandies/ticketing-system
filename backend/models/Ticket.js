@@ -16,6 +16,11 @@ const ticketSchema = mongoose.Schema(
 			required: true,
 			default: 'new',
 		},
+		severity: {
+			type: String,
+			enum: ['urgent', 'normal', 'trivial'],
+			required: true,
+		},
 		project: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Project',

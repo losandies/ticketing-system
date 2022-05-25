@@ -5,6 +5,7 @@ import { ImHome } from 'react-icons/im';
 import { FaTasks } from 'react-icons/fa';
 import { BsClockFill } from 'react-icons/bs';
 
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { navigate } from '../../features/navigation/navigationSlice';
 
@@ -58,33 +59,41 @@ const Sidebar = () => {
 				</div>
 				<div className="page-navigation flex items-center mb-12">
 					<ul className="w-full">
-						<button
-							id="home"
-							className={`flex text-xl my-4 p-4 w-full ${
-								currentPage === 'home' ? 'bg-gray-300' : null
-							} bg-opacity-70 rounded-lg ease-in duration-200`}
-							onClick={onClick}
-						>
-							<ImHome
-								className="text-3xl"
-								style={{ position: 'relative', bottom: '2px' }}
-							/>
-							<p id="home" className="ml-4">
-								Home
-							</p>
-						</button>
-						<button
-							id="tasks"
-							className={`flex text-xl my-4 p-4 w-full ${
-								currentPage === 'tasks' ? 'bg-gray-300' : null
-							} bg-opacity-70 rounded-lg ease-in duration-200`}
-							onClick={onClick}
-						>
-							<FaTasks className="text-3xl" style={{ position: 'relative' }} />
-							<p id="tasks" className="ml-4">
-								My Tasks
-							</p>
-						</button>
+						<Link to="/dashboard">
+							<button
+								id="home"
+								className={`flex text-xl my-4 p-4 w-full ${
+									currentPage === 'home' ? 'bg-gray-300' : null
+								} bg-opacity-70 rounded-lg ease-in duration-200`}
+								onClick={onClick}
+							>
+								<ImHome
+									className="text-3xl"
+									style={{ position: 'relative', bottom: '2px' }}
+								/>
+								<p id="home" className="ml-4">
+									Home
+								</p>
+							</button>
+						</Link>
+						<Link to="/mytasks">
+							<button
+								id="tasks"
+								className={`flex text-xl my-4 p-4 w-full ${
+									currentPage === 'tasks' ? 'bg-gray-300' : null
+								} bg-opacity-70 rounded-lg ease-in duration-200`}
+								onClick={onClick}
+							>
+								<FaTasks
+									className="text-3xl"
+									style={{ position: 'relative' }}
+								/>
+								<p id="tasks" className="ml-4">
+									My Tasks
+								</p>
+							</button>
+						</Link>
+
 						<button
 							id="recent"
 							className={`flex text-xl my-4 p-4 w-full ${
