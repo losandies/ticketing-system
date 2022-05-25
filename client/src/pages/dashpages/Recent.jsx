@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DashboardRecent = () => {
+const Recent = () => {
 	return (
 		<div className="home flex w-full h-screen">
 			<div className="header flex flex-row w-full h-16 border-b-2 mt-10 border-gray-300">
@@ -16,4 +16,4 @@ const DashboardRecent = () => {
 	);
 };
 
-export default DashboardRecent;
+export default Recent;

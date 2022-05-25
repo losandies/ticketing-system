@@ -2,9 +2,9 @@ import React from 'react';
 import Sidebar from '../components/sidebar/Sidebar';
 import { useSelector } from 'react-redux';
 
-import DashboardHome from '../pages/dashpages/DashboardHome';
-import DashboardTasks from '../pages/dashpages/DashboardTasks';
-import DashboardRecent from '../pages/dashpages/DashboardRecent';
+import Home from './dashpages/Home';
+import Tasks from './dashpages/Tasks';
+import Recent from './dashpages/Recent';
 import Spinner from '../components/Spinner';
 
 const Dashboard = () => {
@@ -15,11 +15,11 @@ const Dashboard = () => {
 			<Sidebar />
 			{(() => {
 				if (currentPage === 'home') {
-					return <DashboardHome />;
+					return <Home />;
 				} else if (currentPage === 'tasks') {
-					return <DashboardTasks />;
+					return <Tasks />;
 				} else if (currentPage === 'recent') {
-					return <DashboardRecent />;
+					return <Recent />;
 				}
 			})()}
 		</div>

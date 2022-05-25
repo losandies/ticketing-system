@@ -4,6 +4,8 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
+import Project from './pages/projectpages/Project';
+import CreateProject from './pages/projectpages/CreateProject';
 import PrivateRoute from './components/PrivateRoute';
 
 import { ToastContainer } from 'react-toastify';
@@ -21,6 +23,9 @@ function App() {
 						<Route path="/login" element={<Login />} />
 						<Route path="/dashboard" element={<PrivateRoute />}>
 							<Route path="/dashboard" element={<Dashboard />} />
+						</Route>
+						<Route path="/project/:projectId" element={<PrivateRoute />}>
+							<Route path="/project/:projectId" element={<Project />} />
 						</Route>
 					</Routes>
 				</div>

@@ -4,7 +4,7 @@ import ProjectList from '../../components/dash-home/ProjectList';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-const DashboardHome = () => {
+const Home = () => {
 	const { user } = useSelector((state) => state.auth);
 
 	return (
@@ -34,4 +34,4 @@ const DashboardHome = () => {
 	);
 };
 
-export default DashboardHome;
+export default Home;
