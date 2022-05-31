@@ -4,7 +4,7 @@ const { createTicket, getTickets } = require('../controllers/ticketController');
 
 const { protect } = require('../middleware/authMiddleware');
 
-router.post('/', protect, createTicket);
+router.post('/create-ticket', protect, createTicket);
 
 router.get('/', protect, getTickets);
 

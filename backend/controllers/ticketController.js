@@ -19,18 +19,17 @@ const getTickets = asyncHandler(async (req, res) => {
 const createTicket = asyncHandler(async (req, res) => {
 	const { name, description, deadline, severity } = req.body;
 
-	if (!name || !description || !deadline) {
+	if (!description || !deadline) {
 		res.status(400);
 
 		throw new Error('Please include the required fields');
 	}
 
 	const ticket = await Ticket.create({
-		name,
 		description,
 		deadline,
 		createdBy: req.user._id,
-		project: req.params.projectId,
+		project: req.params.id,
 		severity,
 	});
 
@@ -45,7 +44,7 @@ const createTicket = asyncHandler(async (req, res) => {
 	}
 	// Populating necessary fields with the created tickets
 
-	const project = await Project.findById(req.params.projectId);
+	const project = await Project.findById(req.params.id);
 	const user = await User.findById(req.user._id);
 
 	project.tickets.unshift(ticket);

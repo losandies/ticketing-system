@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = '/api/project/';
+const API_URL = '/api/projects/project';
 
 const getSingleTicket = async (projectId, ticketId, token) => {
 	const config = {
@@ -10,7 +10,7 @@ const getSingleTicket = async (projectId, ticketId, token) => {
 	};
 	console.log('You hit the API');
 	const res = await axios.get(
-		`${API_URL}/project/${projectId}/ticket/${ticketId}`,
+		`${API_URL}${projectId}/ticket/${ticketId}`,
 		config
 	);
 	console.log(res.data);
@@ -19,6 +19,7 @@ const getSingleTicket = async (projectId, ticketId, token) => {
 };
 
 const createTicket = async (ticketData, projectId, token) => {
+	console.log('ticket created');
 	const config = {
 		headers: {
 			Authorization: `Bearer ${token}`,
@@ -26,12 +27,13 @@ const createTicket = async (ticketData, projectId, token) => {
 	};
 
 	const res = await axios.post(
-		`${API_URL}/${projectId}/create-ticket`,
+		`${API_URL}/${projectId}/tickets/create-ticket`,
 		ticketData,
 		config
 	);
 
 	console.log(res.data);
+	console.log('ticket created');
 
 	return res.data;
 };

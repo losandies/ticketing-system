@@ -11,7 +11,7 @@ const { protect } = require('../middleware/authMiddleware');
 
 // Reroute into ticket router
 const ticketRouter = require('./ticketRoutes');
-router.use('/project/:projectId/tickets', ticketRouter);
+router.use('/project/:id/tickets', ticketRouter);
 
 // Create Project
 router.post('/create-project', protect, createProject);

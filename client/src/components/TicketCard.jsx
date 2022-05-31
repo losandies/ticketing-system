@@ -18,7 +18,7 @@ const TicketCard = ({ ticket }) => {
 							: null
 					} `}
 				></div>
-				<p className="p-4">{ticket.name}</p>
+				<p className="p-4">{ticket.description}</p>
 			</div>
 		</div>
 	);

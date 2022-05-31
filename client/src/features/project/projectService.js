@@ -24,7 +24,7 @@ const getSingleProject = async (projectId, token) => {
 	const res = await axios.get(API_URL + '/project/' + projectId, config);
 	console.log(res.data);
 
-	return res.data;
+	return await res.data;
 };
 
 const createProject = async (projectData, token) => {

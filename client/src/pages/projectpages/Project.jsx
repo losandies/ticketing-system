@@ -3,10 +3,13 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import { Link } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import TicketLists from '../../components/dash-project/TicketLists';
 
 const Project = () => {
 	const { project } = useSelector((state) => state.project);
+
+	const navigate = useNavigate();
 
 	return (
 		<div className="flex overflow-y-hidden">
@@ -17,9 +20,12 @@ const Project = () => {
 						<h1>{project.name}</h1>
 					</div>
 					<div className="buttons flex items-center justify-end mb-10">
-						<Link to={`/project/${project._id}/create-ticket`}>
-							<button className="btn mr-6 w-40">Create Ticket</button>
-						</Link>
+						<button
+							className="btn mr-6 w-40"
+							onClick={() => navigate(`/project/${project._id}/create-ticket`)}
+						>
+							Create Ticket
+						</button>
 					</div>
 				</header>
 				<section className="project-info my-4 border-b-2 border-gray-300">

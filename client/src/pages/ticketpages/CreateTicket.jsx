@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { createProject, reset } from '../../features/project/projectSlice';
+import { createTicket } from '../../features/ticket/ticketSlice';
 
 const CreateTicket = () => {
 	const dispatch = useDispatch();
@@ -18,24 +19,24 @@ const CreateTicket = () => {
 	const [formData, setFormData] = useState({
 		description: '',
 		deadline: '',
-		severity: '',
+		severity: 'urgent',
 	});
 
-	const { name, description, deadline, severity } = formData;
+	const { description, deadline, severity } = formData;
 
-	useEffect(() => {
-		if (isError) {
-			toast.error(message);
-		}
+	// useEffect(() => {
+	// 	if (isError) {
+	// 		toast.error(message);
+	// 	}
 
-		if (isSuccess) {
-			dispatch(reset());
+	// 	if (isSuccess) {
+	// 		dispatch(reset());
 
-			navigate(`/project/${project._id}`);
-		}
+	// 		navigate(`/project/${project._id}`);
+	// 	}
 
-		dispatch(reset());
-	}, [dispatch, isError, isSuccess, navigate, message, project]);
+	// 	dispatch(reset());
+	// }, [dispatch, isError, isSuccess, navigate, message, project]);
 
 	const onChange = (e) => {
 		setFormData((prevState) => ({
@@ -46,10 +47,15 @@ const CreateTicket = () => {
 		console.log(formData.name);
 	};
 
+	const ticketData = {
+		formData,
+		projectId: project._id,
+	};
+
 	const onSubmit = (e) => {
 		e.preventDefault();
-
-		dispatch(createProject(formData));
+		console.log(project._id);
+		dispatch(createTicket(ticketData));
 	};
 
 	return (
@@ -64,6 +70,20 @@ const CreateTicket = () => {
 						<form className="form flex flex-col w-full justify-around ">
 							<div className="form flex flex-row justify-center items-center">
 								<div className="form-control w-1/4 mr-[200px]">
+									<label htmlFor="project-name">Ticket Urgency:</label>
+									<select
+										name="severity"
+										className="input border-2 border-gray-400"
+										required
+										onChange={onChange}
+										defaultValue={'Urgent'}
+									>
+										<option value="urgent">Urgent</option>
+										<option value="normal">Normal</option>
+										<option value="trivial">Trivial</option>
+									</select>
+								</div>
+								<div className="form-control w-1/4">
 									<label htmlFor="project-name">Ticket Deadline:</label>
 									<input
 										name="deadline"
@@ -73,20 +93,6 @@ const CreateTicket = () => {
 										required
 										onChange={onChange}
 									/>
-								</div>
-								<div className="form-control w-1/4">
-									<label htmlFor="project-name">Ticket Urgency:</label>
-									<select
-										name="severity"
-										value={severity}
-										className="input border-2 border-gray-400"
-										required
-										onChange={onChange}
-									>
-										<option>Urgent</option>
-										<option>Normal</option>
-										<option>Trivial</option>
-									</select>
 								</div>
 							</div>
 							<div className="form-bottom flex flex-col items-center">
