@@ -8,7 +8,6 @@ import TicketLists from '../../components/dash-project/TicketLists';
 const Project = () => {
 	const { project } = useSelector((state) => state.project);
 
-	console.log(project);
 	return (
 		<div className="flex overflow-y-hidden">
 			<Sidebar />

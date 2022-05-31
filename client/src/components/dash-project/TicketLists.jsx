@@ -8,10 +8,6 @@ const TicketLists = () => {
 
 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch(getSingleProject(project._id));
-	}, []);
-
 	return (
 		<section className="tickets h-full">
 			<div className="ticket-container h-5/6 w-full  p-10 flex justify-around">

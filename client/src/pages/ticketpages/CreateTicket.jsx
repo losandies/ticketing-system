@@ -7,21 +7,21 @@ import { toast } from 'react-toastify';
 
 import { createProject, reset } from '../../features/project/projectSlice';
 
-const CreateProject = () => {
+const CreateTicket = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const { isLoading, isSuccess, isError, message } = useSelector(
+	const { isLoading, isSuccess, isError, message, project } = useSelector(
 		(state) => state.project
 	);
 
 	const [formData, setFormData] = useState({
-		name: '',
 		description: '',
 		deadline: '',
+		severity: '',
 	});
 
-	const { name, description, deadline } = formData;
+	const { name, description, deadline, severity } = formData;
 
 	useEffect(() => {
 		if (isError) {
@@ -31,11 +31,11 @@ const CreateProject = () => {
 		if (isSuccess) {
 			dispatch(reset());
 
-			navigate('/dashboard');
+			navigate(`/project/${project._id}`);
 		}
 
 		dispatch(reset());
-	}, [dispatch, isError, isSuccess, navigate, message]);
+	}, [dispatch, isError, isSuccess, navigate, message, project]);
 
 	const onChange = (e) => {
 		setFormData((prevState) => ({
@@ -59,23 +59,12 @@ const CreateProject = () => {
 				<div className="flex justify-center w-full h-full px-32">
 					<div className="form-container bg-gray-200  flex flex-col items-center justify-center w-[800px] h-[700px] mt-28 rounded-2xl">
 						<div className="header-title text-3xl mb-6">
-							<h1>Create a new project</h1>
+							<h1>Create a new ticket</h1>
 						</div>
 						<form className="form flex flex-col w-full justify-around ">
 							<div className="form flex flex-row justify-center items-center">
-								<div className="form-control w-1/3 mr-44">
-									<label htmlFor="project-name text-xl">Project Name:</label>
-									<input
-										name="name"
-										value={name}
-										type="text"
-										className="input border-2 border-gray-400"
-										required
-										onChange={onChange}
-									/>
-								</div>
-								<div className="form-control w-1/5">
-									<label htmlFor="project-name">Project Deadline:</label>
+								<div className="form-control w-1/4 mr-[200px]">
+									<label htmlFor="project-name">Ticket Deadline:</label>
 									<input
 										name="deadline"
 										value={deadline}
@@ -85,10 +74,24 @@ const CreateProject = () => {
 										onChange={onChange}
 									/>
 								</div>
+								<div className="form-control w-1/4">
+									<label htmlFor="project-name">Ticket Urgency:</label>
+									<select
+										name="severity"
+										value={severity}
+										className="input border-2 border-gray-400"
+										required
+										onChange={onChange}
+									>
+										<option>Urgent</option>
+										<option>Normal</option>
+										<option>Trivial</option>
+									</select>
+								</div>
 							</div>
 							<div className="form-bottom flex flex-col items-center">
 								<div className="form-control w-3/4 mt-6">
-									<label htmlFor="project-name">Project Description:</label>
+									<label htmlFor="project-name">Ticket Description:</label>
 									<textarea
 										name="description"
 										value={description}
@@ -116,4 +119,4 @@ const CreateProject = () => {
 	);
 };
 
-export default CreateProject;
+export default CreateTicket;

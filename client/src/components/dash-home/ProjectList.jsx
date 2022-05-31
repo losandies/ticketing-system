@@ -17,8 +17,20 @@ const ProjectList = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+	// useEffect(() => {
+	// 	return () => {
+	// 		if (isSuccess) {
+	// 			dispatch(reset());
+	// 		}
+	// 	};
+	// }, []);
+
 	useEffect(() => {
 		dispatch(getProjects());
+
+		setTimeout(() => {
+			dispatch(reset());
+		}, 1000);
 	}, []);
 
 	const getProject = async (project) => {
@@ -30,8 +42,8 @@ const ProjectList = () => {
 	if (isLoading) return <Spinner />;
 
 	return (
-		<div className="absolute h-full flex grow">
-			<table className="shadow-lg bg-white w-full h-screen table-fixed">
+		<div className="max-h-[400px]">
+			<table className="shadow-lg bg-white w-full">
 				<thead className=" bg-gray-100">
 					<tr>
 						<th className="border-b-2 border-top-2 text-left px-8 py-4">
@@ -45,7 +57,7 @@ const ProjectList = () => {
 						</th>
 					</tr>
 				</thead>
-				<tbody className="overflow-y-scroll h-96 w-screen">
+				<tbody className="w-screen overflow-y-scroll">
 					{projects.map((project) => (
 						<tr
 							className="hover:bg-gray-100 hover:cursor-pointer active:bg-gray-300"

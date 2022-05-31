@@ -27,9 +27,28 @@ const getSingleProject = async (projectId, token) => {
 	return res.data;
 };
 
+const createProject = async (projectData, token) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+
+	const res = await axios.post(
+		API_URL + '/create-project',
+		projectData,
+		config
+	);
+
+	console.log(res.data);
+
+	return res.data;
+};
+
 const projectService = {
 	getProjects,
 	getSingleProject,
+	createProject,
 };
 
 export default projectService;

@@ -11,7 +11,7 @@ const Dashboard = () => {
 	const { currentPage } = useSelector((state) => state.navigation);
 
 	return (
-		<div className="flex max-h-screen">
+		<div className="flex max-h-screen overflow-hidden">
 			<Sidebar />
 
 			<Home />

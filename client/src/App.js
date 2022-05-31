@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Project from './pages/projectpages/Project';
 import CreateProject from './pages/projectpages/CreateProject';
+import CreateTicket from './pages/ticketpages/CreateTicket';
 import PrivateRoute from './components/PrivateRoute';
 
 import { ToastContainer } from 'react-toastify';
@@ -30,6 +31,18 @@ function App() {
 						</Route>
 						<Route path="/project/:projectId" element={<PrivateRoute />}>
 							<Route path="/project/:projectId" element={<Project />} />
+						</Route>
+						<Route path="/create-project" element={<PrivateRoute />}>
+							<Route path="/create-project" element={<CreateProject />} />
+						</Route>
+						<Route
+							path="/project/:projectId/create-ticket"
+							element={<PrivateRoute />}
+						>
+							<Route
+								path="/project/:projectId/create-ticket"
+								element={<CreateTicket />}
+							/>
 						</Route>
 					</Routes>
 				</div>
