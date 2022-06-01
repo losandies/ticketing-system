@@ -56,6 +56,10 @@ const CreateTicket = () => {
 		e.preventDefault();
 		console.log(project._id);
 		dispatch(createTicket(ticketData));
+
+		navigate(`/dashboard`);
+
+		toast.success(`Ticket created for project: ${project.name}`);
 	};
 
 	return (
