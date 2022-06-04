@@ -19,6 +19,8 @@ const getTickets = asyncHandler(async (req, res) => {
 const createTicket = asyncHandler(async (req, res) => {
 	const { name, description, deadline, severity } = req.body;
 
+	console.log(req.user);
+
 	if (!description || !deadline) {
 		res.status(400);
 
@@ -54,7 +56,28 @@ const createTicket = asyncHandler(async (req, res) => {
 	await user.save();
 });
 
+const claimTicket = asyncHandler(async (req, res) => {
+	console.log(req.headers);
+	const user = await User.findById(req.user._id);
+	const ticket = await Ticket.findById(req.params.ticketId);
+
+	console.log(ticket);
+
+	if (ticket) {
+		res.status(200).json({ msg: 'Ticket claimed' });
+	} else {
+		res.status(400);
+
+		throw new Error('Ticket could not be found.');
+	}
+
+	user.assignedTickets.unshift(ticket);
+
+	await user.save();
+});
+
 module.exports = {
 	createTicket,
 	getTickets,
+	claimTicket,
 };

@@ -1,11 +1,28 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { claimTicket } from '../features/ticket/ticketSlice';
 import Modal from '../components/Modal';
 
 const TicketCard = ({ ticket }) => {
 	const { project } = useSelector((state) => state.project);
+	const { isLoading, isSuccess, isError } = useSelector(
+		(state) => state.ticket
+	);
+
+	const dispatch = useDispatch();
 
 	const [isOpen, setIsOpen] = useState(false);
+
+	const ticketData = {
+		ticketId: ticket._id,
+		projectId: project._id,
+	};
+
+	const initiateClaimTicket = () => {
+		dispatch(claimTicket(ticketData));
+
+		setIsOpen(false);
+	};
 
 	return (
 		<div className="flex justify-center bg-">
@@ -35,8 +52,15 @@ const TicketCard = ({ ticket }) => {
 					<p className="text-2xl">{ticket.description}</p>
 				</div>
 				<div className="buttons absolute bottom-10 w-full flex">
-					<button className="btn btn-primary mr-[500px]">Claim Ticket</button>
-					<button className="btn btn-primary">Exit</button>
+					<button
+						className="btn btn-primary mr-[500px]"
+						onClick={() => initiateClaimTicket()}
+					>
+						Claim Ticket
+					</button>
+					<button className="btn btn-primary" onClick={() => setIsOpen(false)}>
+						Exit
+					</button>
 				</div>
 			</Modal>
 		</div>

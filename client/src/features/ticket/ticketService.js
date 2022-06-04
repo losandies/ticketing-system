@@ -38,9 +38,27 @@ const createTicket = async (ticketData, projectId, token) => {
 	return res.data;
 };
 
+const claimTicket = async (ticketId, projectId, token) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+
+	const res = await axios.get(
+		`${API_URL}/${projectId}/tickets/claim-ticket/${ticketId}`,
+		config
+	);
+
+	console.log(res.data);
+
+	return res.data;
+};
+
 const ticketService = {
 	getSingleTicket,
 	createTicket,
+	claimTicket,
 };
 
 export default ticketService;
