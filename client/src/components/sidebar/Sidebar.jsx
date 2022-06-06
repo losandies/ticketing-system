@@ -4,10 +4,13 @@ import { HiSearch } from 'react-icons/hi';
 import { ImHome } from 'react-icons/im';
 import { FaTasks } from 'react-icons/fa';
 import { BsClockFill } from 'react-icons/bs';
+import { CgLogOut } from 'react-icons/cg';
 
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { navigate } from '../../features/navigation/navigationSlice';
+import { logout } from '../../features/auth/authSlice';
 
 import TeamItem from './TeamItem';
 
@@ -16,9 +19,16 @@ const Sidebar = () => {
 	const { currentPage } = useSelector((state) => state.navigation);
 
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const onClick = (e) => {
 		dispatch(navigate(e.target.id));
+	};
+
+	const logOut = () => {
+		dispatch(logout());
+
+		navigate('/');
 	};
 
 	return (
@@ -113,6 +123,19 @@ const Sidebar = () => {
 			<TeamItem team="Refactoring UI" />
 			<TeamItem team="Tailwind CSS" />
 			<TeamItem team="NothingWorks" />
+
+			<div className="logout mt-10 flex ">
+				<button
+					id="logout"
+					className={`flex text-xl my-4 p-4 w-full bg-opacity-70 hover:bg-gray-600 hover:text-white rounded-lg ease-in duration-200`}
+					onClick={logOut}
+				>
+					<CgLogOut className="text-3xl" style={{ position: 'relative' }} />
+					<p id="recent" className="ml-4">
+						Log Out
+					</p>
+				</button>
+			</div>
 		</div>
 	);
 };
