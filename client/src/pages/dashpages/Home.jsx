@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PinnedProject from '../../components/dash-home/PinnedProject';
 import ProjectList from '../../components/dash-home/ProjectList';
 
-import { navigate } from '../../features/navigation/navigationSlice';
+import { switchCurrentPage } from '../../features/navigation/navigationSlice';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -13,7 +13,7 @@ const Home = () => {
 	const dispatch = useDispatch();
 
 	const onClick = (e) => {
-		dispatch(navigate(e.target.id));
+		dispatch(switchCurrentPage(e.target.id));
 	};
 
 	return (

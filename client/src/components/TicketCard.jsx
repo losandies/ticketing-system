@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { claimTicket } from '../features/ticket/ticketSlice';
 import Modal from '../components/Modal';
+import { toast } from 'react-toastify';
 
 const TicketCard = ({ ticket }) => {
 	const { project } = useSelector((state) => state.project);
+	const { currentPage } = useSelector((state) => state.navigation);
 	const { isLoading, isSuccess, isError } = useSelector(
 		(state) => state.ticket
 	);
@@ -20,14 +22,14 @@ const TicketCard = ({ ticket }) => {
 
 	const initiateClaimTicket = () => {
 		dispatch(claimTicket(ticketData));
-
+		toast.success('Ticket Claimed!');
 		setIsOpen(false);
 	};
 
 	return (
-		<div className="flex justify-center bg-">
+		<div className="flex justify-center">
 			<div
-				className="bg-white w-5/6 h-32 rounded-xl shadow-md mb-5 overflow-scroll scrollbar-hide cursor-pointer"
+				className="bg-white w-5/6 h-32 rounded-xl shadow-md mb-5 overflow-scroll scrollbar-hide cursor-pointer hover:shadow-lg"
 				onClick={() => setIsOpen(true)}
 			>
 				<div
@@ -40,7 +42,11 @@ const TicketCard = ({ ticket }) => {
 							? 'bg-sky-300'
 							: null
 					} sticky top-0 z-10 `}
-				></div>
+				>
+					<h2 className="pt-3 pl-2 text-white text-xs">
+						Deadline: {ticket.deadline}
+					</h2>
+				</div>
 
 				<p className="p-4">{ticket.description}</p>
 			</div>
@@ -52,12 +58,22 @@ const TicketCard = ({ ticket }) => {
 					<p className="text-2xl">{ticket.description}</p>
 				</div>
 				<div className="buttons absolute bottom-10 w-full flex">
-					<button
-						className="btn btn-primary mr-[500px]"
-						onClick={() => initiateClaimTicket()}
-					>
-						Claim Ticket
-					</button>
+					{currentPage === 'home' ? (
+						<button
+							className="btn btn-primary mr-[500px]"
+							onClick={() => initiateClaimTicket()}
+						>
+							Claim Ticket
+						</button>
+					) : currentPage === 'tasks' ? (
+						<button
+							className="btn btn-primary mr-[500px]"
+							onClick={() => initiateClaimTicket()}
+						>
+							Mark Completed
+						</button>
+					) : null}
+
 					<button className="btn btn-primary" onClick={() => setIsOpen(false)}>
 						Exit
 					</button>

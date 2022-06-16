@@ -13,7 +13,7 @@ const MyTasks = () => {
 	return (
 		<div className="flex">
 			<Sidebar />
-			<Home />
+			<Tasks />
 			{/* {(() => {
 				if (currentPage === 'home') {
 					return <Home />;

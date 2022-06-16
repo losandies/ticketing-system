@@ -6,10 +6,10 @@ const initialState = {
 	isLoading: false,
 };
 
-export const navigate = createAsyncThunk(
+export const switchCurrentPage = createAsyncThunk(
 	'navigation/navigate',
 	async (page) => {
-		return await navigationService.navigate(page);
+		return await navigationService.switchCurrentPage(page);
 	}
 );
 
@@ -19,10 +19,10 @@ export const navigationSlice = createSlice({
 	reducers: {},
 	extraReducers: (builder) => {
 		builder
-			.addCase(navigate.pending, (state) => {
+			.addCase(switchCurrentPage.pending, (state) => {
 				state.isLoading = true;
 			})
-			.addCase(navigate.fulfilled, (state, action) => {
+			.addCase(switchCurrentPage.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.currentPage = action.payload;
 			});

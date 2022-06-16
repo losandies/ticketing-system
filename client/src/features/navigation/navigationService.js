@@ -1,9 +1,9 @@
-const navigate = (page) => {
+const switchCurrentPage = (page) => {
 	return page;
 };
 
 const navigationService = {
-	navigate,
+	switchCurrentPage,
 };
 
 export default navigationService;

@@ -18,14 +18,4 @@ app.use('/api/projects', require('./routes/projectRoutes'));
 
 app.use(errorHandler);
 
-// Serve static assets if in production
-
-var distDir = __dirname + '/dist/';
-
-if (process.env.NODE_ENV === 'production') {
-	// Set static folder
-
-	app.use(express.static('../client/build'));
-}
-
 app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));

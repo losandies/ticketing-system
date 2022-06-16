@@ -9,7 +9,7 @@ import { CgLogOut } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { navigate } from '../../features/navigation/navigationSlice';
+import { switchCurrentPage } from '../../features/navigation/navigationSlice';
 import { logout } from '../../features/auth/authSlice';
 
 import TeamItem from './TeamItem';
@@ -22,7 +22,8 @@ const Sidebar = () => {
 	const navigate = useNavigate();
 
 	const onClick = (e) => {
-		dispatch(navigate(e.target.id));
+		dispatch(switchCurrentPage(e.target.id));
+		navigate(e.target.id);
 	};
 
 	const logOut = () => {
