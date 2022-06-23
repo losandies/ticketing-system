@@ -5,6 +5,7 @@ const {
 	getProjects,
 	getOneProject,
 	editProject,
+	deleteProject,
 } = require('../controllers/projectController');
 
 const { protect } = require('../middleware/authMiddleware');
@@ -22,6 +23,6 @@ router.get('/project/:id', protect, getOneProject);
 // Edit Project
 router.put('/project/edit/:id', protect, editProject);
 // Delete Project
-router.delete('/project/:id');
+router.delete('/project/:id', protect, deleteProject);
 
 module.exports = router;

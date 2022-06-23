@@ -33,7 +33,7 @@ const Home = () => {
 				</div>
 				<section className="pinned-projects my-4">
 					<h3 className="ml-10 mt-4">PINNED PROJECTS</h3>
-					<div className="mx-10 my-4 flex justify-between">
+					<div className="mx-10 my-4 flex lg:justify-between flex-wrap justify-center">
 						<PinnedProject />
 						<PinnedProject />
 						<PinnedProject />

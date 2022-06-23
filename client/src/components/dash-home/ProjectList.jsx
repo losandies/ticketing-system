@@ -3,11 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
 	getProjects,
 	getSingleProject,
+	deleteProject,
 	reset,
 } from '../../features/project/projectSlice';
 
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../components/Spinner';
+
+import { MdDelete } from 'react-icons/md';
 
 const ProjectList = () => {
 	const { projects, isLoading, isSuccess } = useSelector(
@@ -55,6 +58,9 @@ const ProjectList = () => {
 						<th className="border-b-2 border-top-2 text-left px-8 py-4">
 							<p className="text-lg font-normal text-gray-400">DEADLINE</p>
 						</th>
+						<th className="border-b-2 border-top-2 text-left px-8 py-4">
+							<p className="text-lg font-normal text-gray-400"></p>
+						</th>
 					</tr>
 				</thead>
 				<tbody className="w-screen overflow-y-scroll">
@@ -62,11 +68,31 @@ const ProjectList = () => {
 						<tr
 							className="hover:bg-gray-100 hover:cursor-pointer active:bg-gray-300"
 							key={project._id}
-							onClick={() => getProject(project)}
 						>
-							<td className=" px-8 border-b-2 py-4">{project.name}</td>
-							<td className=" px-8 border-b-2 py-4">{project.description}</td>
-							<td className=" px-8 border-b-2 py-4">{project.deadline}</td>
+							<td
+								className=" px-8 border-b-2 py-4"
+								onClick={() => getProject(project)}
+							>
+								{project.name}
+							</td>
+							<td
+								className=" px-8 border-b-2 py-4"
+								onClick={() => getProject(project)}
+							>
+								{project.description}
+							</td>
+							<td
+								className=" px-8 border-b-2 py-4"
+								onClick={() => getProject(project)}
+							>
+								{project.deadline}
+							</td>
+							<td className=" px-8 border-b-2 py-4">
+								<MdDelete
+									className="text-3xl hover:text-red-500"
+									onClick={() => dispatch(deleteProject(project._id))}
+								/>
+							</td>
 						</tr>
 					))}
 				</tbody>

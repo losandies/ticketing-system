@@ -76,8 +76,19 @@ const claimTicket = asyncHandler(async (req, res) => {
 	await user.save();
 });
 
+const deleteTicket = asyncHandler(async (req, res) => {
+	console.log(req.params);
+	try {
+		await Ticket.findByIdAndDelete(req.params.ticketId);
+		res.status(200).json({ msg: 'Ticket Deleted' });
+	} catch (error) {
+		throw new Error(error);
+	}
+});
+
 module.exports = {
 	createTicket,
 	getTickets,
 	claimTicket,
+	deleteTicket,
 };

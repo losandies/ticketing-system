@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { claimTicket } from '../features/ticket/ticketSlice';
+import { useNavigate } from 'react-router-dom';
+import { claimTicket, deleteTicket } from '../features/ticket/ticketSlice';
 import Modal from '../components/Modal';
 import { toast } from 'react-toastify';
+
+import { MdDelete } from 'react-icons/md';
 
 const TicketCard = ({ ticket }) => {
 	const { project } = useSelector((state) => state.project);
@@ -12,6 +15,7 @@ const TicketCard = ({ ticket }) => {
 	);
 
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -24,6 +28,12 @@ const TicketCard = ({ ticket }) => {
 		dispatch(claimTicket(ticketData));
 		toast.success('Ticket Claimed!');
 		setIsOpen(false);
+	};
+	const initiateDeleteTicket = () => {
+		dispatch(deleteTicket(ticketData));
+		toast.success('Ticket Deleted!');
+		setIsOpen(false);
+		navigate('/dashboard');
 	};
 
 	return (
@@ -41,10 +51,13 @@ const TicketCard = ({ ticket }) => {
 							: ticket.severity === 'trivial'
 							? 'bg-sky-300'
 							: null
-					} sticky top-0 z-10 `}
+					} sticky top-0 z-10 flex`}
 				>
-					<h2 className="pt-3 pl-2 text-white text-xs">
+					<h2 className="pt-3 pl-2 text-white text-sm">
 						Deadline: {ticket.deadline}
+					</h2>
+					<h2 className="absolute right-2 pt-3 pr-2 text-white text-sm">
+						Status: {ticket.status}
 					</h2>
 				</div>
 
@@ -57,26 +70,38 @@ const TicketCard = ({ ticket }) => {
 				<div className="ticket-description flex justify-center mt-14">
 					<p className="text-2xl">{ticket.description}</p>
 				</div>
-				<div className="buttons absolute bottom-10 w-full flex">
-					{currentPage === 'home' ? (
-						<button
-							className="btn btn-primary mr-[500px]"
-							onClick={() => initiateClaimTicket()}
-						>
-							Claim Ticket
-						</button>
-					) : currentPage === 'tasks' ? (
-						<button
-							className="btn btn-primary mr-[500px]"
-							onClick={() => initiateClaimTicket()}
-						>
-							Mark Completed
-						</button>
-					) : null}
+				<div className="buttons absolute bottom-10 w-full flex ml-7">
+					<div className="w-4/5 h-32 bg-gray-300 flex justify-around items-center rounded-md">
+						{currentPage === 'home' ? (
+							<button
+								className="btn btn-primary"
+								onClick={() => initiateClaimTicket()}
+							>
+								Claim Ticket
+							</button>
+						) : currentPage === 'tasks' ? (
+							<button
+								className="btn btn-primary"
+								onClick={() => initiateClaimTicket()}
+							>
+								Mark Completed
+							</button>
+						) : null}
 
-					<button className="btn btn-primary" onClick={() => setIsOpen(false)}>
-						Exit
-					</button>
+						<button
+							className="btn btn-error"
+							onClick={() => initiateDeleteTicket()}
+						>
+							Delete Ticket
+						</button>
+
+						<button
+							className="btn btn-warning"
+							onClick={() => setIsOpen(false)}
+						>
+							Back
+						</button>
+					</div>
 				</div>
 			</Modal>
 		</div>

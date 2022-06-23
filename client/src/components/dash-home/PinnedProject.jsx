@@ -9,7 +9,7 @@ const PinnedProject = ({ user }) => {
 		// </div>
 
 		<>
-			<div className="w-72 h-20 flex flex-row">
+			<div className="w-72 h-20 flex flex-row my-5">
 				<div className="h-full w-20 bg-green-500 flex justify-center items-center rounded-l-md">
 					<p className="text-lg text-white">BG</p>
 				</div>

@@ -55,10 +55,28 @@ const claimTicket = async (ticketId, projectId, token) => {
 	return res.data;
 };
 
+const deleteTicket = async (ticketId, projectId, token) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+
+	const res = axios.delete(
+		`${API_URL}/${projectId}/tickets/delete-ticket/${ticketId}`,
+		config
+	);
+
+	console.log(res.data);
+
+	return (await res).data;
+};
+
 const ticketService = {
 	getSingleTicket,
 	createTicket,
 	claimTicket,
+	deleteTicket,
 };
 
 export default ticketService;

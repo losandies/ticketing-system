@@ -84,9 +84,21 @@ const editProject = (req, res) => {
 		}
 	);
 };
+
+const deleteProject = asyncHandler(async (req, res) => {
+	console.log(req.params.id);
+	try {
+		await Project.findByIdAndDelete(req.params.id);
+		res.status(200).json({ msg: 'Project Deleted' });
+	} catch (error) {
+		res.status(400);
+		throw new Error(error);
+	}
+});
 module.exports = {
 	createProject,
 	getProjects,
 	getOneProject,
 	editProject,
+	deleteProject,
 };
