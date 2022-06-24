@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import TicketCard from '../../components/TicketCard';
+import { getUserTickets } from '../../features/ticket/ticketSlice';
+import axios from 'axios';
 
 const Tasks = () => {
 	const { user } = useSelector((state) => state.auth);
+	const { userTickets } = useSelector((state) => state.ticket);
 
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(getUserTickets());
+	}, []);
+
 	return (
 		<div className="home flex flex-col w-full h-screen">
 			<div className="header flex flex-row w-full h-16 border-b-2 mt-10 border-gray-300">
@@ -15,7 +23,7 @@ const Tasks = () => {
 			</div>
 
 			<div className="mt-10">
-				{user.assignedTickets.map((ticket) => (
+				{userTickets.map((ticket) => (
 					<TicketCard ticket={ticket} key={ticket._id} />
 				))}
 			</div>

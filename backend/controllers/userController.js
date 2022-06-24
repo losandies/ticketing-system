@@ -82,7 +82,23 @@ const generateToken = (id) => {
 	});
 };
 
+const getUserTickets = asyncHandler(async (req, res) => {
+	const user = await User.findById(req.user._id).populate('assignedTickets');
+
+	console.log(user.assignedTickets);
+	const assignedTickets = user.assignedTickets;
+
+	if (user && assignedTickets) {
+		res.status(200).json(assignedTickets);
+	} else {
+		res.status(400);
+
+		throw new Error('No tickets found');
+	}
+});
+
 module.exports = {
 	registerUser,
 	loginUser,
+	getUserTickets,
 };
