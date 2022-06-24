@@ -13,7 +13,6 @@ const createProject = asyncHandler(async (req, res) => {
 	}
 
 	const user = await User.findById(req.user._id);
-	console.log(req.user);
 
 	const project = await Project.create({
 		name,
@@ -21,8 +20,6 @@ const createProject = asyncHandler(async (req, res) => {
 		deadline,
 		createdBy: req.user._id,
 	});
-
-	console.log(req.user);
 
 	// user.projects.unshift(project);
 
@@ -87,8 +84,10 @@ const editProject = (req, res) => {
 
 const deleteProject = asyncHandler(async (req, res) => {
 	console.log(req.params.id);
+
 	try {
 		await Project.findByIdAndDelete(req.params.id);
+		await Ticket.deleteMany({ project: req.params.id });
 		res.status(200).json({ msg: 'Project Deleted' });
 	} catch (error) {
 		res.status(400);
