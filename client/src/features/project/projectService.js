@@ -56,7 +56,7 @@ const deleteProject = async (projectId, token) => {
 
 	console.log(res.data);
 
-	return res.data;
+	return await res.data;
 };
 const projectService = {
 	getProjects,

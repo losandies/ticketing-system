@@ -10,14 +10,17 @@ const TicketLists = () => {
 
 	return (
 		<section className="tickets h-full">
-			<div className="ticket-container h-5/6 w-full  p-10 flex justify-around">
+			<div className="ticket-container h-5/6 w-full  p-10 flex justify-around flex-wrap">
 				<div className="bg-gray-200 w-80 h-5/6 flex flex-col rounded-xl ">
 					<div className="list-title ml-4 h-12 my-6 ">
 						<p className="text-2xl">Urgent</p>
 					</div>
 					<div className="overflow-y-scroll">
 						{project.tickets
-							.filter((ticket) => ticket.severity === 'urgent')
+							.filter(
+								(ticket) =>
+									ticket.severity === 'urgent' && ticket.status !== 'Completed'
+							)
 							.map((ticket) => (
 								<TicketCard ticket={ticket} key={ticket._id} />
 							))}
@@ -29,7 +32,10 @@ const TicketLists = () => {
 					</div>
 					<div className="overflow-y-scroll">
 						{project.tickets
-							.filter((ticket) => ticket.severity === 'normal')
+							.filter(
+								(ticket) =>
+									ticket.severity === 'normal' && ticket.status !== 'Completed'
+							)
 							.map((ticket) => (
 								<TicketCard ticket={ticket} key={ticket._id} />
 							))}
@@ -41,7 +47,22 @@ const TicketLists = () => {
 					</div>
 					<div className="overflow-y-scroll">
 						{project.tickets
-							.filter((ticket) => ticket.severity === 'trivial')
+							.filter(
+								(ticket) =>
+									ticket.severity === 'trivial' && ticket.status !== 'Completed'
+							)
+							.map((ticket) => (
+								<TicketCard ticket={ticket} key={ticket._id} />
+							))}
+					</div>
+				</div>
+				<div className="bg-gray-200 w-80 h-5/6 flex flex-col rounded-xl ">
+					<div className="list-title ml-4 h-12 my-6 ">
+						<p className="text-2xl">Completed</p>
+					</div>
+					<div className="overflow-y-scroll">
+						{project.tickets
+							.filter((ticket) => ticket.status === 'Completed')
 							.map((ticket) => (
 								<TicketCard ticket={ticket} key={ticket._id} />
 							))}

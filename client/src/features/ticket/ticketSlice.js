@@ -54,6 +54,28 @@ export const claimTicket = createAsyncThunk(
 	}
 );
 
+export const completeTicket = createAsyncThunk(
+	'ticket/complete',
+	async (ticketData, thunkAPI) => {
+		const { ticketId, projectId } = ticketData;
+
+		try {
+			const token = thunkAPI.getState().auth.user.token;
+			console.log(token);
+			return await ticketService.completeTicket(ticketId, projectId, token);
+		} catch (error) {
+			const message =
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString();
+
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+);
+
 export const deleteTicket = createAsyncThunk(
 	'ticket/delete',
 	async (ticketData, thunkAPI) => {
@@ -147,6 +169,18 @@ const ticketSlice = createSlice({
 			.addCase(deleteTicket.rejected, (state) => {
 				state.isError = true;
 				state.isLoading = false;
+			})
+			.addCase(completeTicket.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(completeTicket.fulfilled, (state) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+			})
+			.addCase(completeTicket.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
 			});
 	},
 });

@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler');
 
 const Project = require('../models/Project');
 const User = require('../models/User.js');
+const Ticket = require('../models/Ticket');
 
 const createProject = asyncHandler(async (req, res) => {
 	const { name, description, deadline } = req.body;
@@ -83,17 +84,15 @@ const editProject = (req, res) => {
 };
 
 const deleteProject = asyncHandler(async (req, res) => {
-	console.log(req.params.id);
-
 	try {
-		await Project.findByIdAndDelete(req.params.id);
 		await Ticket.deleteMany({ project: req.params.id });
+		await Project.findByIdAndDelete(req.params.id);
 		res.status(200).json({ msg: 'Project Deleted' });
 	} catch (error) {
-		res.status(400);
-		throw new Error(error);
+		res.status(500).json(error);
 	}
 });
+
 module.exports = {
 	createProject,
 	getProjects,

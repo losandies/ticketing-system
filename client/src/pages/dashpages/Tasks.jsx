@@ -2,17 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import TicketCard from '../../components/TicketCard';
 import { getUserTickets } from '../../features/ticket/ticketSlice';
+import Spinner from '../../components/Spinner';
 import axios from 'axios';
 
 const Tasks = () => {
 	const { user } = useSelector((state) => state.auth);
-	const { userTickets } = useSelector((state) => state.ticket);
+	const { userTickets, isLoading } = useSelector((state) => state.ticket);
 
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		dispatch(getUserTickets());
 	}, []);
+
+	if (isLoading) return <Spinner />;
 
 	return (
 		<div className="home flex flex-col w-full h-screen">
@@ -23,9 +26,11 @@ const Tasks = () => {
 			</div>
 
 			<div className="mt-10">
-				{userTickets.map((ticket) => (
-					<TicketCard ticket={ticket} key={ticket._id} />
-				))}
+				{userTickets
+					.filter((ticket) => ticket.status !== 'Completed')
+					.map((ticket) => (
+						<TicketCard ticket={ticket} key={ticket._id} />
+					))}
 			</div>
 		</div>
 	);

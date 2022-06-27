@@ -28,19 +28,27 @@ const ProjectList = () => {
 	// 	};
 	// }, []);
 
-	useEffect(() => {
+	const getProjectsOnLoad = () => {
 		dispatch(getProjects());
 
 		setTimeout(() => {
 			dispatch(reset());
 		}, 1000);
-	}, []);
+	};
 
 	const getProject = async (project) => {
 		await dispatch(getSingleProject(project._id));
-
 		await navigate(`/project/${project._id}`);
 	};
+
+	const initDeleteProject = async (project) => {
+		await dispatch(deleteProject(project._id));
+		await getProjectsOnLoad();
+	};
+
+	useEffect(() => {
+		getProjectsOnLoad();
+	}, []);
 
 	if (isLoading) return <Spinner />;
 
@@ -90,7 +98,7 @@ const ProjectList = () => {
 							<td className=" px-8 border-b-2 py-4">
 								<MdDelete
 									className="text-3xl hover:text-red-500"
-									onClick={() => dispatch(deleteProject(project._id))}
+									onClick={() => initDeleteProject(project)}
 								/>
 							</td>
 						</tr>

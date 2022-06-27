@@ -55,11 +55,16 @@ const CreateTicket = () => {
 	const onSubmit = (e) => {
 		e.preventDefault();
 		console.log(project._id);
-		dispatch(createTicket(ticketData));
 
-		navigate(`/dashboard`);
+		if (formData.description !== '' && formData.deadline !== '') {
+			dispatch(createTicket(ticketData));
 
-		toast.success(`Ticket created for project: ${project.name}`);
+			navigate(`/dashboard`);
+
+			toast.success(`Ticket created for project: ${project.name}`);
+		} else {
+			toast.error('Please enter the required fields');
+		}
 	};
 
 	return (

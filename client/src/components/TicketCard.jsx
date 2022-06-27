@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { claimTicket, deleteTicket } from '../features/ticket/ticketSlice';
+import {
+	claimTicket,
+	deleteTicket,
+	completeTicket,
+} from '../features/ticket/ticketSlice';
 import Modal from '../components/Modal';
 import { toast } from 'react-toastify';
 
@@ -28,6 +32,16 @@ const TicketCard = ({ ticket }) => {
 		dispatch(claimTicket(ticketData));
 		toast.success('Ticket Claimed!');
 		setIsOpen(false);
+
+		navigate('/mytasks');
+	};
+
+	const initiateCompleteTicket = () => {
+		dispatch(completeTicket(ticketData));
+		toast.success('Ticket Claimed!');
+		setIsOpen(false);
+
+		navigate('/dashboard');
 	};
 	const initiateDeleteTicket = () => {
 		dispatch(deleteTicket(ticketData));
@@ -53,10 +67,10 @@ const TicketCard = ({ ticket }) => {
 							: null
 					} sticky top-0 z-10 flex`}
 				>
-					<h2 className="pt-3 pl-2 text-white text-sm">
+					<h2 className="pt-3 pl-2 text-white text-xs">
 						Deadline: {ticket.deadline}
 					</h2>
-					<h2 className="absolute right-2 pt-3 pr-2 text-white text-sm">
+					<h2 className="absolute right-2 pt-3 pr-2 text-white text-xs">
 						Status: {ticket.status}
 					</h2>
 				</div>
@@ -82,7 +96,7 @@ const TicketCard = ({ ticket }) => {
 						) : currentPage === 'tasks' ? (
 							<button
 								className="btn btn-primary"
-								onClick={() => initiateClaimTicket()}
+								onClick={() => initiateCompleteTicket()}
 							>
 								Mark Completed
 							</button>

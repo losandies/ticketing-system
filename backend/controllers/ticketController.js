@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler');
 const Project = require('../models/Project');
 const User = require('../models/User.js');
 const Ticket = require('../models/Ticket');
+const { findById } = require('../models/Ticket');
 
 //
 //GET SINGLE TICKET
@@ -63,6 +64,17 @@ const claimTicket = asyncHandler(async (req, res) => {
 
 	console.log(ticket);
 
+	Ticket.findByIdAndUpdate(
+		req.params.ticketId,
+		{ $set: { status: 'In progress' } },
+		{ upsert: true, new: true },
+		(err) => {
+			if (err) {
+				console.error(err);
+			}
+		}
+	);
+
 	if (ticket) {
 		res.status(200).json({ msg: 'Ticket claimed' });
 	} else {
@@ -72,8 +84,32 @@ const claimTicket = asyncHandler(async (req, res) => {
 	}
 
 	user.assignedTickets.unshift(ticket);
-
 	await user.save();
+});
+
+const completeTicket = asyncHandler(async (req, res) => {
+	const ticket = await Ticket.findById(req.params.ticketId);
+
+	console.log(ticket);
+
+	Ticket.findByIdAndUpdate(
+		req.params.ticketId,
+		{ $set: { status: 'Completed' } },
+		{ upsert: true, new: true },
+		(err) => {
+			if (err) {
+				console.error(err);
+			}
+		}
+	);
+
+	if (ticket) {
+		res.status(200).json({ msg: 'Ticket claimed' });
+	} else {
+		res.status(400);
+
+		throw new Error('Ticket could not be found.');
+	}
 });
 
 const deleteTicket = asyncHandler(async (req, res) => {
@@ -91,4 +127,5 @@ module.exports = {
 	getTickets,
 	claimTicket,
 	deleteTicket,
+	completeTicket,
 };

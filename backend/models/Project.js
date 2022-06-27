@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Ticket = require('./Ticket');
 
 const projectSchema = mongoose.Schema(
 	{
