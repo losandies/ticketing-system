@@ -7,6 +7,8 @@ const User = require('../models/User');
 const registerUser = asyncHandler(async (req, res) => {
 	const { name, email, password } = req.body;
 
+	const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
+
 	if (!name || !email || !password) {
 		res.status(400);
 
@@ -26,7 +28,7 @@ const registerUser = asyncHandler(async (req, res) => {
 	const hashedPassword = await bcrypt.hash(password, salt);
 
 	const user = await User.create({
-		name,
+		name: capitalizedName,
 		email,
 		password: hashedPassword,
 	});

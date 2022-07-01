@@ -12,20 +12,20 @@ const Project = () => {
 	const navigate = useNavigate();
 
 	return (
-		<div className="flex overflow-y-hidden">
+		<div className="flex">
 			<Sidebar />
-			<div className="home flex flex-col w-full h-screen z-10">
+			<div className="home flex flex-col w-full h-[100%] z-10 bg-white">
 				<header className="header flex flex-row w-full h-16 border-b-2 mt-10 border-gray-300">
 					<div className="header-title w-full text-3xl ml-10 relative bottom-2 ">
 						<h1>{project.name}</h1>
 					</div>
 					<div className="buttons flex items-center justify-end mb-10">
-						<button
-							className="btn mr-6 w-40"
-							onClick={() => navigate(`/project/${project._id}/create-ticket`)}
+						<Link
+							to={`/project/${project._id}/create-ticket`}
+							className="btn btn-primary text-white mr-6"
 						>
 							Create Ticket
-						</button>
+						</Link>
 					</div>
 				</header>
 				<section className="project-info my-4 border-b-2 border-gray-300">
@@ -34,7 +34,13 @@ const Project = () => {
 						PROJECT DEADLINE: {project.deadline}
 					</h3>
 				</section>
-				<TicketLists />
+				{project.tickets.length >= 1 ? (
+					<TicketLists />
+				) : (
+					<div className="h-screen w-full flex justify-center mt-36">
+						<p className="text-4xl">No tickets for this project yet.</p>
+					</div>
+				)}
 			</div>
 		</div>
 	);

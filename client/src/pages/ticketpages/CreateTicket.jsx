@@ -70,7 +70,7 @@ const CreateTicket = () => {
 	return (
 		<div className="flex">
 			<Sidebar />
-			<div className="flex relative flex-col w-full h-screen z-10">
+			<div className="flex relative flex-col w-full h-screen z-10 bg-white">
 				<div className="flex justify-center w-full h-full px-32">
 					<div className="form-container bg-gray-200  flex flex-col items-center justify-center w-[800px] h-[700px] mt-28 rounded-2xl">
 						<div className="header-title text-3xl mb-6">
@@ -98,6 +98,7 @@ const CreateTicket = () => {
 										name="deadline"
 										value={deadline}
 										type="date"
+										max={project.deadline}
 										className="input border-2 border-gray-400"
 										required
 										onChange={onChange}

@@ -7,15 +7,18 @@ import Tasks from './dashpages/Tasks';
 import Recent from './dashpages/Recent';
 import Spinner from '../components/Spinner';
 
+import StickyBox from 'react-sticky-box';
+
 const Dashboard = () => {
 	const { currentPage } = useSelector((state) => state.navigation);
 
 	return (
-		<div className="flex overflow-hidden">
-			<Sidebar />
+		<>
+			<div className="flex h-[100%]">
+				<Sidebar />
 
-			<Home />
-			{/* {(() => {
+				<Home />
+				{/* {(() => {
 				if (currentPage === 'home') {
 					return <Home />;
 				} else if (currentPage === 'tasks') {
@@ -24,7 +27,8 @@ const Dashboard = () => {
 					return <Recent />;
 				}
 			})()} */}
-		</div>
+			</div>
+		</>
 	);
 };
 

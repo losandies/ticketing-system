@@ -53,7 +53,7 @@ const ProjectList = () => {
 	if (isLoading) return <Spinner />;
 
 	return (
-		<div className="max-h-[400px] w-[100%]">
+		<div className="max-h-[100%] w-[100%]">
 			<table className="shadow-lg bg-white w-full">
 				<thead className=" bg-gray-100">
 					<tr>

@@ -10,9 +10,9 @@ const TicketLists = () => {
 
 	return (
 		<section className="tickets h-full">
-			<div className="ticket-container h-5/6 w-full  p-10 flex justify-around flex-wrap">
-				<div className="bg-gray-200 w-80 h-5/6 flex flex-col rounded-xl ">
-					<div className="list-title ml-4 h-12 my-6 ">
+			<div className="ticket-container h-full w-full  p-10 flex justify-around flex-wrap">
+				<div className="bg-gray-200 w-80 h-[23rem] flex flex-col rounded-xl my-6">
+					<div className="list-title ml-4 h-12 mb-6 mt-2 ">
 						<p className="text-2xl">Urgent</p>
 					</div>
 					<div className="overflow-y-scroll">
@@ -26,8 +26,8 @@ const TicketLists = () => {
 							))}
 					</div>
 				</div>
-				<div className="bg-gray-200 w-80 h-5/6 flex flex-col rounded-xl">
-					<div className="list-title ml-4 h-12 my-6 ">
+				<div className="bg-gray-200 w-80 h-[23rem] flex flex-col rounded-xl  my-6">
+					<div className="list-title ml-4 h-12 mb-6 mt-2 ">
 						<p className="text-2xl">Normal</p>
 					</div>
 					<div className="overflow-y-scroll">
@@ -41,8 +41,8 @@ const TicketLists = () => {
 							))}
 					</div>
 				</div>
-				<div className="bg-gray-200 w-80 h-5/6 flex flex-col rounded-xl ">
-					<div className="list-title ml-4 h-12 my-6 ">
+				<div className="bg-gray-200 w-80 h-[23rem] flex flex-col rounded-xl my-6 ">
+					<div className="list-title ml-4 h-12 mb-6 mt-2 ">
 						<p className="text-2xl">Trivial</p>
 					</div>
 					<div className="overflow-y-scroll">
@@ -56,7 +56,7 @@ const TicketLists = () => {
 							))}
 					</div>
 				</div>
-				<div className="bg-gray-200 w-80 h-5/6 flex flex-col rounded-xl ">
+				<div className="bg-gray-200 w-80 h-[23rem] flex flex-col rounded-xl my-6 ">
 					<div className="list-title ml-4 h-12 my-6 ">
 						<p className="text-2xl">Completed</p>
 					</div>

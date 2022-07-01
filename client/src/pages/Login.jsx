@@ -50,10 +50,21 @@ const Login = () => {
 		dispatch(login(userData));
 	};
 
+	const guestSignInSubmit = (e) => {
+		e.preventDefault();
+
+		const userData = {
+			email: 'guest@strombo.com',
+			password: '12345678',
+		};
+
+		dispatch(login(userData));
+	};
+
 	return (
 		<>
 			<Navbar />
-			<div className="flex items-center justify-center h-screen w-screen">
+			<div className="flex items-center justify-center h-screen w-screen bg-white">
 				<div className="w-full max-w-sm">
 					<form
 						className="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4"
@@ -109,12 +120,13 @@ const Login = () => {
 							>
 								Sign In
 							</button>
-							<Link
-								to="/forgot-password"
-								className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+							<button
+								className="btn btn-info text-white font-bold py-2 px-4 rounded "
+								type="submit"
+								onClick={guestSignInSubmit}
 							>
-								Forgot Password?
-							</Link>
+								Guest Sign In
+							</button>
 						</div>
 						<div className="flex items-center justify-center">
 							<p className="text-xs">

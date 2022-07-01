@@ -75,6 +75,27 @@ export const completeTicket = createAsyncThunk(
 		}
 	}
 );
+export const reopenTicket = createAsyncThunk(
+	'ticket/reopen',
+	async (ticketData, thunkAPI) => {
+		const { ticketId, projectId } = ticketData;
+
+		try {
+			const token = thunkAPI.getState().auth.user.token;
+			console.log(token);
+			return await ticketService.reopenTicket(ticketId, projectId, token);
+		} catch (error) {
+			const message =
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString();
+
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+);
 
 export const deleteTicket = createAsyncThunk(
 	'ticket/delete',
@@ -178,6 +199,18 @@ const ticketSlice = createSlice({
 				state.isSuccess = true;
 			})
 			.addCase(completeTicket.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
+			})
+			.addCase(reopenTicket.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(reopenTicket.fulfilled, (state) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+			})
+			.addCase(reopenTicket.rejected, (state, action) => {
 				state.isLoading = false;
 				state.isError = true;
 				state.message = action.payload;

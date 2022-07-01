@@ -18,7 +18,7 @@ function App() {
 	return (
 		<>
 			<Router>
-				<div>
+				<div className="h-[100%]">
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/register" element={<Register />} />

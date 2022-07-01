@@ -6,6 +6,7 @@ const {
 	claimTicket,
 	deleteTicket,
 	completeTicket,
+	reopenTicket,
 } = require('../controllers/ticketController');
 
 const { protect } = require('../middleware/authMiddleware');
@@ -17,6 +18,8 @@ router.get('/', protect, getTickets);
 router.get('/claim-ticket/:ticketId', protect, claimTicket);
 
 router.get('/complete-ticket/:ticketId', protect, completeTicket);
+
+router.get('/reopen-ticket/:ticketId', protect, reopenTicket);
 
 router.delete('/delete-ticket/:ticketId', protect, deleteTicket);
 

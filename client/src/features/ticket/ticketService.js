@@ -105,11 +105,29 @@ const completeTicket = async (ticketId, projectId, token) => {
 	return await res.data;
 };
 
+const reopenTicket = async (ticketId, projectId, token) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+
+	const res = await axios.get(
+		`${API_URL}/${projectId}/tickets/reopen-ticket/${ticketId}`,
+		config
+	);
+
+	console.log(res.data);
+
+	return await res.data;
+};
+
 const ticketService = {
 	getSingleTicket,
 	createTicket,
 	claimTicket,
 	completeTicket,
+	reopenTicket,
 	deleteTicket,
 	getUserTickets,
 };

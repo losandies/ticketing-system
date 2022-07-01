@@ -112,6 +112,31 @@ const completeTicket = asyncHandler(async (req, res) => {
 	}
 });
 
+const reopenTicket = asyncHandler(async (req, res) => {
+	const ticket = await Ticket.findById(req.params.ticketId);
+
+	console.log(ticket);
+
+	Ticket.findByIdAndUpdate(
+		req.params.ticketId,
+		{ $set: { status: 'New' } },
+		{ upsert: true, new: true },
+		(err) => {
+			if (err) {
+				console.error(err);
+			}
+		}
+	);
+
+	if (ticket) {
+		res.status(200).json({ msg: 'Ticket reopened' });
+	} else {
+		res.status(400);
+
+		throw new Error('Ticket could not be found.');
+	}
+});
+
 const deleteTicket = asyncHandler(async (req, res) => {
 	console.log(req.params);
 	try {
@@ -128,4 +153,5 @@ module.exports = {
 	claimTicket,
 	deleteTicket,
 	completeTicket,
+	reopenTicket,
 };
