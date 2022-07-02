@@ -1,18 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import TicketCard from '../TicketCard';
-import { useSelector, useDispatch } from 'react-redux';
-import { getSingleProject } from '../../features/project/projectSlice';
 
 const TicketLists = () => {
 	const { project } = useSelector((state) => state.project);
 
-	const dispatch = useDispatch();
-
 	return (
-		<section className="tickets h-full">
-			<div className="ticket-container h-full w-full  p-10 flex justify-around flex-wrap">
+		<section className="tickets h-screen">
+			<div className="ticket-container h-full w-full  p-10 flex justify-evenly flex-wrap">
 				<div className="bg-gray-200 w-80 h-[23rem] flex flex-col rounded-xl my-6">
-					<div className="list-title ml-4 h-12 mb-6 mt-2 ">
+					<div className="list-title ml-4 h-6 mb-6 mt-2 ">
 						<p className="text-2xl">Urgent</p>
 					</div>
 					<div className="overflow-y-scroll">
@@ -27,7 +24,7 @@ const TicketLists = () => {
 					</div>
 				</div>
 				<div className="bg-gray-200 w-80 h-[23rem] flex flex-col rounded-xl  my-6">
-					<div className="list-title ml-4 h-12 mb-6 mt-2 ">
+					<div className="list-title ml-4 h-6 mb-6 mt-2 ">
 						<p className="text-2xl">Normal</p>
 					</div>
 					<div className="overflow-y-scroll">
@@ -41,8 +38,9 @@ const TicketLists = () => {
 							))}
 					</div>
 				</div>
+
 				<div className="bg-gray-200 w-80 h-[23rem] flex flex-col rounded-xl my-6 ">
-					<div className="list-title ml-4 h-12 mb-6 mt-2 ">
+					<div className="list-title ml-4 h-6 mb-6 mt-2 ">
 						<p className="text-2xl">Trivial</p>
 					</div>
 					<div className="overflow-y-scroll">
@@ -57,7 +55,7 @@ const TicketLists = () => {
 					</div>
 				</div>
 				<div className="bg-gray-200 w-80 h-[23rem] flex flex-col rounded-xl my-6 ">
-					<div className="list-title ml-4 h-12 my-6 ">
+					<div className="list-title ml-4 h-6 my-6 ">
 						<p className="text-2xl">Completed</p>
 					</div>
 					<div className="overflow-y-scroll">
@@ -68,6 +66,8 @@ const TicketLists = () => {
 							))}
 					</div>
 				</div>
+				<div className="w-80"></div>
+				<div className="w-80"></div>
 			</div>
 		</section>
 	);

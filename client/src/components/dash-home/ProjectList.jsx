@@ -13,20 +13,10 @@ import Spinner from '../../components/Spinner';
 import { MdDelete } from 'react-icons/md';
 
 const ProjectList = () => {
-	const { projects, isLoading, isSuccess } = useSelector(
-		(state) => state.project
-	);
+	const { projects, isLoading } = useSelector((state) => state.project);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-
-	// useEffect(() => {
-	// 	return () => {
-	// 		if (isSuccess) {
-	// 			dispatch(reset());
-	// 		}
-	// 	};
-	// }, []);
 
 	const getProjectsOnLoad = () => {
 		dispatch(getProjects());

@@ -8,12 +8,11 @@ import {
 	reopenTicket,
 } from '../features/ticket/ticketSlice';
 import { switchCurrentPage } from '../features/navigation/navigationSlice';
-import Modal from '../components/Modal';
 import { toast } from 'react-toastify';
 
-import { MdDelete } from 'react-icons/md';
+import Modal from '../components/Modal';
 
-const TicketCard = ({ ticket, projectName }) => {
+const TicketCard = ({ ticket }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 

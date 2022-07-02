@@ -1,20 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import Sidebar from '../../components/sidebar/Sidebar';
+import React, { useState } from 'react';
+import Sidebar from '../components/Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
-
-import { createProject, reset } from '../../features/project/projectSlice';
-import { createTicket } from '../../features/ticket/ticketSlice';
+import { createTicket } from '../features/ticket/ticketSlice';
 
 const CreateTicket = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const { isLoading, isSuccess, isError, message, project } = useSelector(
-		(state) => state.project
-	);
+	const { project } = useSelector((state) => state.project);
 
 	const [formData, setFormData] = useState({
 		description: '',
@@ -22,29 +18,13 @@ const CreateTicket = () => {
 		severity: 'urgent',
 	});
 
-	const { description, deadline, severity } = formData;
-
-	// useEffect(() => {
-	// 	if (isError) {
-	// 		toast.error(message);
-	// 	}
-
-	// 	if (isSuccess) {
-	// 		dispatch(reset());
-
-	// 		navigate(`/project/${project._id}`);
-	// 	}
-
-	// 	dispatch(reset());
-	// }, [dispatch, isError, isSuccess, navigate, message, project]);
+	const { description, deadline } = formData;
 
 	const onChange = (e) => {
 		setFormData((prevState) => ({
 			...prevState,
 			[e.target.name]: e.target.value,
 		}));
-
-		console.log(formData.name);
 	};
 
 	const ticketData = {

@@ -4,9 +4,9 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
-import Project from './pages/projectpages/Project';
-import CreateProject from './pages/projectpages/CreateProject';
-import CreateTicket from './pages/ticketpages/CreateTicket';
+import Project from './pages/Project';
+import CreateProject from './pages/CreateProject';
+import CreateTicket from './pages/CreateTicket';
 import PrivateRoute from './components/PrivateRoute';
 
 import { ToastContainer } from 'react-toastify';
@@ -18,7 +18,7 @@ function App() {
 	return (
 		<>
 			<Router>
-				<div className="h-[100%]">
+				<div>
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/register" element={<Register />} />

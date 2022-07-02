@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
 import { login } from '../features/auth/authSlice';
+
+import Navbar from '../components/Navbar';
 
 const Home = () => {
 	const dispatch = useDispatch();

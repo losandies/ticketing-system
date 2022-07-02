@@ -22,10 +22,6 @@ const createProject = asyncHandler(async (req, res) => {
 		createdBy: req.user._id,
 	});
 
-	// user.projects.unshift(project);
-
-	// await user.save()
-
 	if (project) {
 		res.status(201).json(project);
 	} else {
@@ -53,7 +49,6 @@ const getOneProject = asyncHandler(async (req, res) => {
 		.populate('createdBy', 'name');
 
 	if (project) {
-		console.log(project.tickets);
 		res.status(200).json(project);
 	} else {
 		return res.status(400).json({ msg: 'No Project Found' });

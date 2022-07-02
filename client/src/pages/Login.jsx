@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { reset, login } from '../features/auth/authSlice';
+
+import { toast } from 'react-toastify';
+
 import Navbar from '../components/Navbar';
 
 const Login = () => {

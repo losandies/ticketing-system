@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import Sidebar from '../../components/sidebar/Sidebar';
+import Sidebar from '../components/Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
 
-import { createProject, reset } from '../../features/project/projectSlice';
+import { createProject, reset } from '../features/project/projectSlice';
 
 const CreateProject = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const { isLoading, isSuccess, isError, message } = useSelector(
-		(state) => state.project
-	);
+	const { isSuccess, isError, message } = useSelector((state) => state.project);
 
 	const [formData, setFormData] = useState({
 		name: '',
@@ -42,13 +40,10 @@ const CreateProject = () => {
 			...prevState,
 			[e.target.name]: e.target.value,
 		}));
-
-		console.log(formData.name);
 	};
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-
 		dispatch(createProject(formData));
 	};
 

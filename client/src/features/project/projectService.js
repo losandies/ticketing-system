@@ -20,9 +20,7 @@ const getSingleProject = async (projectId, token) => {
 			Authorization: `Bearer ${token}`,
 		},
 	};
-	console.log('You hit the API');
-	const res = await axios.get(API_URL + '/project/' + projectId, config);
-	console.log(res.data);
+	const res = await axios.get(`${API_URL}/project/${projectId}`, config);
 
 	return await res.data;
 };
@@ -35,12 +33,10 @@ const createProject = async (projectData, token) => {
 	};
 
 	const res = await axios.post(
-		API_URL + '/create-project',
+		`${API_URL}/create-project`,
 		projectData,
 		config
 	);
-
-	console.log(res.data);
 
 	return res.data;
 };
@@ -53,8 +49,6 @@ const deleteProject = async (projectId, token) => {
 	};
 
 	const res = await axios.delete(`${API_URL}/project/${projectId}`, config);
-
-	console.log(res.data);
 
 	return await res.data;
 };

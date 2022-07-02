@@ -2,21 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { reset, register } from '../features/auth/authSlice';
+
 import { toast } from 'react-toastify';
 import Navbar from '../components/Navbar';
 
 const Register = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-
-	const [formData, setFormData] = useState({
-		name: '',
-		email: '',
-		password: '',
-		password2: '',
-	});
-
-	const { name, email, password, password2 } = formData;
 
 	const { isError, isLoading, user, isSuccess, message } = useSelector(
 		(state) => state.auth
@@ -33,6 +25,15 @@ const Register = () => {
 
 		dispatch(reset());
 	}, [user, isError, isSuccess, message, isLoading, navigate, dispatch]);
+
+	const [formData, setFormData] = useState({
+		name: '',
+		email: '',
+		password: '',
+		password2: '',
+	});
+
+	const { name, email, password, password2 } = formData;
 
 	const onChange = (e) => {
 		setFormData((prevState) => ({
@@ -112,6 +113,9 @@ const Register = () => {
 								htmlFor="password"
 							>
 								Password
+								<p className="text-xs font-light">
+									(Password must be 8 or more characters)
+								</p>
 							</label>
 							<input
 								className="input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight "

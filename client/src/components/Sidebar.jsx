@@ -1,19 +1,16 @@
 import React from 'react';
-import logo from '../../assets/images/logo1.png';
-import avatar from '../../assets/images/avatar-image.png';
-import { HiSearch } from 'react-icons/hi';
-import { ImHome } from 'react-icons/im';
-import { FaTasks } from 'react-icons/fa';
-import { BsClockFill } from 'react-icons/bs';
-import { CgLogOut } from 'react-icons/cg';
-
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { switchCurrentPage } from '../../features/navigation/navigationSlice';
-import { logout } from '../../features/auth/authSlice';
 
-import TeamItem from './TeamItem';
+import { switchCurrentPage } from '../features/navigation/navigationSlice';
+import { logout } from '../features/auth/authSlice';
+
+import logo from '../assets/images/logo1.png';
+import avatar from '../assets/images/avatar-image.png';
+import { ImHome } from 'react-icons/im';
+import { FaTasks } from 'react-icons/fa';
+import { CgLogOut } from 'react-icons/cg';
 
 const Sidebar = () => {
 	const { user } = useSelector((state) => state.auth);
@@ -50,6 +47,7 @@ const Sidebar = () => {
 					strombo
 				</h1>
 			</Link>
+
 			<div className="user-info flex ">
 				<div className="user-avatar flex items-center md:mx-2 mb-10">
 					<div className="avatar bg-white w-14 h-14 rounded-full">
@@ -64,21 +62,7 @@ const Sidebar = () => {
 					<p className="font-semibold text-xl mt-3">{user.name}</p>
 				</div>
 			</div>
-			{/* <div className="flex items-center justify-center mb-10">
-				<input
-					type="text"
-					className="input text-lg w-full border-2 border-slate-300"
-					placeholder="Search"
-				/>
-				<HiSearch
-					className="text-3xl"
-					style={{
-						position: 'fixed',
-						left: '250px',
-						color: 'gray',
-					}}
-				/>
-			</div> */}
+
 			<div className="page-navigation flex items-center mb-12">
 				<ul className="w-full">
 					<Link to="/dashboard">
@@ -98,6 +82,7 @@ const Sidebar = () => {
 							</p>
 						</button>
 					</Link>
+
 					<Link to="/mytasks">
 						<button
 							id="tasks"
@@ -115,10 +100,7 @@ const Sidebar = () => {
 				</ul>
 			</div>
 
-			<div
-				className="logout mt-20 first-letter:
-			flex "
-			>
+			<div className="logout mt-20 flex">
 				<button
 					id="logout"
 					className={`flex text-xl my-4 p-4 w-full bg-opacity-70 hover:bg-gray-600 hover:text-white rounded-lg ease-in duration-200`}

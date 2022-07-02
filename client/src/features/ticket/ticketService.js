@@ -13,7 +13,6 @@ const getSingleTicket = async (projectId, ticketId, token) => {
 		`${API_URL}${projectId}/ticket/${ticketId}`,
 		config
 	);
-	console.log(res.data);
 
 	return res.data;
 };
@@ -32,9 +31,6 @@ const createTicket = async (ticketData, projectId, token) => {
 		config
 	);
 
-	console.log(res.data);
-	console.log('ticket created');
-
 	return res.data;
 };
 
@@ -50,8 +46,6 @@ const claimTicket = async (ticketId, projectId, token) => {
 		config
 	);
 
-	console.log(res.data);
-
 	return res.data;
 };
 
@@ -62,11 +56,7 @@ const getUserTickets = async (token) => {
 		},
 	};
 
-	console.log('API HIT');
-
 	const res = await axios.get('/api/users/user-tickets', config);
-
-	console.log(res.data);
 
 	return res.data;
 };
@@ -83,8 +73,6 @@ const deleteTicket = async (ticketId, projectId, token) => {
 		config
 	);
 
-	console.log(res.data);
-
 	return await res.data;
 };
 
@@ -100,8 +88,6 @@ const completeTicket = async (ticketId, projectId, token) => {
 		config
 	);
 
-	console.log(res.data);
-
 	return await res.data;
 };
 
@@ -116,8 +102,6 @@ const reopenTicket = async (ticketId, projectId, token) => {
 		`${API_URL}/${projectId}/tickets/reopen-ticket/${ticketId}`,
 		config
 	);
-
-	console.log(res.data);
 
 	return await res.data;
 };

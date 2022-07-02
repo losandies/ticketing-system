@@ -1,15 +1,12 @@
-import React, { useEffect } from 'react';
-import Sidebar from '../../components/sidebar/Sidebar';
+import React from 'react';
 import { Link } from 'react-router-dom';
-
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import TicketLists from '../../components/dash-project/TicketLists';
+
+import Sidebar from '../components/Sidebar';
+import TicketLists from '../components/dash-project/TicketLists';
 
 const Project = () => {
 	const { project } = useSelector((state) => state.project);
-
-	const navigate = useNavigate();
 
 	return (
 		<div className="flex">

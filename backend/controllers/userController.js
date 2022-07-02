@@ -87,7 +87,6 @@ const generateToken = (id) => {
 const getUserTickets = asyncHandler(async (req, res) => {
 	const user = await User.findById(req.user._id).populate('assignedTickets');
 
-	console.log(user.assignedTickets);
 	const assignedTickets = user.assignedTickets;
 
 	if (user && assignedTickets) {
