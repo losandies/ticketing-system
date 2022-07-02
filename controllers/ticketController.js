@@ -3,10 +3,6 @@ const asyncHandler = require('express-async-handler');
 const Project = require('../models/Project');
 const User = require('../models/User.js');
 const Ticket = require('../models/Ticket');
-const { findById } = require('../models/Ticket');
-
-//
-//GET SINGLE TICKET
 
 const getTickets = asyncHandler(async (req, res) => {
 	const tickets = await Ticket.find({ project: req.params.projectId }).populate(
