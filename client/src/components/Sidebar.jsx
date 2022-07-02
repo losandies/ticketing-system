@@ -31,7 +31,7 @@ const Sidebar = () => {
 	};
 
 	return (
-		<div className="bg-gray-200 bg-opacity-50 max-w-[350px] w-[350px] h-[100%] flex flex-col sticky top-0 p-4 border-r-2">
+		<div className="bg-gray-200 bg-opacity-50 max-w-[350px] w-[350px] h-[100%] flex flex-col sticky top-0 p-4 z-10">
 			<Link
 				to="/dashboard"
 				className="logo-div flex items-center my-2 mb-10"
