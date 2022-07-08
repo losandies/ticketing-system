@@ -2,7 +2,11 @@
 
 # Live Demo & Preview
 
+<img src="/client/src/assets/images/home.png">
 <img src="/client/src/assets/images/preview.png">
+<img src="/client/src/assets/images/project.png">
+<img src="/client/src/assets/images/tasks.png">
+<img src="/client/src/assets/images/ticket.png">
 
 [Strombo](www.strombo.herokuapp.com)
 

@@ -27,13 +27,19 @@ const Tasks = () => {
 					</div>
 				</div>
 
-				<div className="mt-10">
-					{userTickets
-						.filter((ticket) => ticket.status !== 'Completed')
-						.map((ticket) => (
-							<TicketCard ticket={ticket} key={ticket._id} />
-						))}
-				</div>
+				{userTickets.length >= 1 ? (
+					<div className="mt-10">
+						{userTickets
+							.filter((ticket) => ticket.status !== 'Completed')
+							.map((ticket) => (
+								<TicketCard ticket={ticket} key={ticket._id} />
+							))}
+					</div>
+				) : (
+					<div className="h-screen w-full flex justify-center mt-36">
+						<p className="text-4xl">No tasks yet.</p>
+					</div>
+				)}
 			</div>
 		</div>
 	);
