@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
 import { switchCurrentPage } from '../features/navigation/navigationSlice';
 import { logout } from '../features/auth/authSlice';
 
@@ -26,12 +25,11 @@ const Sidebar = () => {
 
 	const logOut = () => {
 		dispatch(logout());
-
 		navigate('/');
 	};
 
 	return (
-		<div className="bg-gray-200 bg-opacity-50 max-w-[350px] w-[350px] h-[100%] flex flex-col sticky top-0 p-4 z-10">
+		<div className="bg-gray-200 bg-opacity-50 max-w-[350px] md:w-[350px] h-[100%] flex flex-col sticky top-0 p-4 z-10">
 			<Link
 				to="/dashboard"
 				className="logo-div flex items-center my-2 mb-10"
