@@ -12,11 +12,13 @@ import Spinner from './Spinner';
 
 import { MdDelete } from 'react-icons/md';
 import { useMediaQuery } from 'react-responsive';
+import { toast } from 'react-toastify';
 
 const ProjectList = () => {
 	const isMobile = useMediaQuery({ query: '(max-width: 760px)' });
 
 	const { projects, isLoading } = useSelector((state) => state.project);
+	const { user } = useSelector((state) => state.auth);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -35,6 +37,9 @@ const ProjectList = () => {
 	};
 
 	const initDeleteProject = async (project) => {
+		if (user._id !== project.createdBy._id)
+			return toast.error('Only the creator of this project can delete it.');
+
 		await dispatch(deleteProject(project._id));
 		await getProjectsOnLoad();
 	};
@@ -43,7 +48,7 @@ const ProjectList = () => {
 		getProjectsOnLoad();
 	}, []);
 
-	if (isLoading) return <Spinner />;
+	if (isLoading && !isMobile) return <Spinner />;
 
 	return isMobile ? (
 		<div className="h-full">
@@ -56,7 +61,7 @@ const ProjectList = () => {
 						<th className="border-b-2 border-top-2 text-left px-8 py-2">
 							<p className="text-lg font-normal text-gray-400">DEADLINE</p>
 						</th>
-						<th className="border-b-2 border-top-2 text-left px-8 py-2"></th>
+						<th className="border-b-2 border-top-2 text-left px-8 py-"></th>
 					</tr>
 				</thead>
 				<tbody className="w-screen overflow-y-scroll">
@@ -79,7 +84,7 @@ const ProjectList = () => {
 							</td>
 							<td className=" px-8 border-b-2 py-4">
 								<MdDelete
-									className="text-3xl hover:text-red-500"
+									className="text-3xl md:hover:text-red-500"
 									onClick={() => initDeleteProject(project)}
 								/>
 							</td>

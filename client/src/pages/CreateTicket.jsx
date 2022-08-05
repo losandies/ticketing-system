@@ -5,8 +5,13 @@ import { useNavigate } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
 import { createTicket } from '../features/ticket/ticketSlice';
+import { useMediaQuery } from 'react-responsive';
+import TopNav from '../components/TopNav';
+import BottomNav from '../components/BottomNav';
 
 const CreateTicket = () => {
+	const isMobile = useMediaQuery({ query: '(max-width: 760px)' });
+
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -48,17 +53,17 @@ const CreateTicket = () => {
 	};
 
 	return (
-		<div className="flex">
-			<Sidebar />
+		<div className="flex flex-col h-screen md:flex-row">
+			{isMobile ? <TopNav /> : <Sidebar />}
 			<div className="flex relative flex-col w-full h-screen z-10 bg-white">
-				<div className="flex justify-center w-full h-full px-32">
-					<div className="form-container bg-gray-200  flex flex-col items-center justify-center w-[800px] h-[700px] mt-28 rounded-2xl">
-						<div className="header-title text-3xl mb-6">
+				<div className="flex justify-center w-full h-full md:px-32">
+					<div className="form-container bg-gray-100 md:bg-gray-200  flex flex-col items-center md:justify-center w-screen md:w-[800px] md:h-[700px] md:mt-28 md:rounded-2xl">
+						<div className="header-title text-3xl mb-6 mt-12 md:mt-[0px]">
 							<h1>Create a new ticket</h1>
 						</div>
 						<form className="form flex flex-col w-full justify-around ">
-							<div className="form flex flex-row justify-center items-center">
-								<div className="form-control w-1/4 mr-[200px]">
+							<div className="form flex flex-row justify-around md:justify-center items-center">
+								<div className="form-control w-[40%] md:w-1/4 md:mr-[200px]">
 									<label htmlFor="project-name">Ticket Urgency:</label>
 									<select
 										name="severity"
@@ -72,7 +77,7 @@ const CreateTicket = () => {
 										<option value="trivial">Trivial</option>
 									</select>
 								</div>
-								<div className="form-control w-1/4">
+								<div className="form-control w-[40%] md:w-1/4">
 									<label htmlFor="project-name">Ticket Deadline:</label>
 									<input
 										name="deadline"
@@ -85,8 +90,8 @@ const CreateTicket = () => {
 									/>
 								</div>
 							</div>
-							<div className="form-bottom flex flex-col items-center">
-								<div className="form-control w-3/4 mt-6">
+							<div className="form-bottom flex flex-col items-center ">
+								<div className="form-control w-[90%] md:w-3/4 mt-6">
 									<label htmlFor="project-name">Ticket Description:</label>
 									<textarea
 										name="description"
@@ -98,7 +103,7 @@ const CreateTicket = () => {
 										onChange={onChange}
 									></textarea>
 								</div>
-								<div className="form-control w-3/4 mt-16">
+								<div className="form-control w-[90%] md:w-3/4 mt-16">
 									<button
 										className="btn btn-primary text-2xl text-white"
 										onClick={onSubmit}
@@ -111,6 +116,7 @@ const CreateTicket = () => {
 					</div>
 				</div>
 			</div>
+			{isMobile ? <BottomNav /> : null}
 		</div>
 	);
 };

@@ -1,6 +1,7 @@
 import React from 'react';
+import { useMediaQuery } from 'react-responsive';
 
-const modalStyles = {
+const modalDesktopStyles = {
 	position: 'fixed',
 	top: '50%',
 	left: '50%',
@@ -9,6 +10,17 @@ const modalStyles = {
 	padding: '50px',
 	width: '800px',
 	height: '600px',
+	zIndex: 1000,
+};
+const modalMobileStyles = {
+	position: 'fixed',
+	top: '50%',
+	left: '50%',
+	transform: 'translate(-50%, -50%)',
+	backgroundColor: '#FFF',
+	padding: '10px',
+	width: '350px',
+	height: '250px',
 	zIndex: 1000,
 };
 const overlayStyles = {
@@ -22,12 +34,21 @@ const overlayStyles = {
 };
 
 const Modal = ({ open, children, onClose }) => {
+	const isMobile = useMediaQuery({ query: '(max-width: 760px)' });
 	if (!open) return null;
 
-	return (
+	return isMobile ? (
 		<>
 			<div style={overlayStyles} onClick={onClose} />
-			<div style={modalStyles} className="rounded-xl">
+			<div style={modalMobileStyles} className="rounded-xl">
+				{children}
+			</div>
+			;
+		</>
+	) : (
+		<>
+			<div style={overlayStyles} onClick={onClose} />
+			<div style={modalDesktopStyles} className="rounded-xl">
 				{children}
 			</div>
 			;

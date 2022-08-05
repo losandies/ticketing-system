@@ -21,14 +21,17 @@ const Project = () => {
 				}`}
 			>
 				<div className="home flex flex-col w-full h-full bg-white">
-					<header className="header flex flex-row w-full h-16 border-b-2 mt-10 border-gray-300">
-						<div className="header-title w-full text-3xl ml-6 relative bottom-2 ">
-							<h1>{project.name}</h1>
+					<header className="header flex flex-col w-full h-fit border-b-2 mt-10 border-gray-300">
+						<div className="flex justify-center">
+							<div className="header-title w-[90%] bg-gray-200 p-2 flex justify-center rounded-lg text-3xl relative bottom-2 ">
+								<h1 className="text-2xl">{project.name}</h1>
+							</div>
 						</div>
-						<div className="buttons flex items-center justify-end mb-10">
+
+						<div className="buttons flex w-full items-center justify-center mb-6">
 							<Link
 								to={`/project/${project._id}/create-ticket`}
-								className="btn btn-primary text-white mr-6"
+								className="btn btn-primary text-white w-[90%]"
 							>
 								Create Ticket
 							</Link>
@@ -44,8 +47,10 @@ const Project = () => {
 						{project.tickets.length >= 1 ? (
 							<TicketLists />
 						) : (
-							<div className="w-full flex justify-center ">
-								<p className="text-4xl">No tickets for this project yet.</p>
+							<div className="w-full mt-44 h-32">
+								<p className="text-4xl text-center">
+									No tickets for this project yet.
+								</p>
 							</div>
 						)}
 					</div>

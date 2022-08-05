@@ -9,7 +9,7 @@ const TopNav = () => {
 	const dispatch = useDispatch();
 
 	return (
-		<div className="flex justify-between items-center bg-white border-b-[1px] border-gray-100 h-16 w-full sticky top-0 z-10">
+		<div className="flex justify-between items-center bg-white border-b-[1px] border-gray-100 h-16 w-full sticky top-0 z-50">
 			<Link
 				to="/dashboard"
 				className="mx-4"

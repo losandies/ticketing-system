@@ -11,7 +11,7 @@ const Dashboard = () => {
 
 	return isMobile ? (
 		<>
-			<div className="flex flex-col w-full h-screen md:flex-row md:h-full md:w-full">
+			<div className="flex flex-col w-full h-full md:flex-row  md:w-full">
 				<TopNav />
 				<Projects />
 				<BottomNav />

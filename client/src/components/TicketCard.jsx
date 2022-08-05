@@ -11,8 +11,11 @@ import { switchCurrentPage } from '../features/navigation/navigationSlice';
 import { toast } from 'react-toastify';
 
 import Modal from '../components/Modal';
+import { useMediaQuery } from 'react-responsive';
 
 const TicketCard = ({ ticket }) => {
+	const isMobile = useMediaQuery({ query: '(max-width: 760px)' });
+
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -89,40 +92,40 @@ const TicketCard = ({ ticket }) => {
 			</div>
 
 			<Modal open={isOpen} onClose={() => setIsOpen(false)}>
-				<div className="ticket-header flex justify-center items-center w-full h-20 bg-gray-300 rounded-md">
+				<div className="hidden md:flex ticket-header flex justify-center items-center w-full h-20 bg-gray-300 rounded-md">
 					<p className="text-2xl">Ticket ID - {ticket._id}</p>
 				</div>
 
-				<div className="ticket-importance flex mt-6">
+				<div className="hidden md:flex ticket-importance flex mt-6">
 					<p className="text-2xl">
 						Importance:{' '}
 						{ticket.severity.charAt(0).toUpperCase() + ticket.severity.slice(1)}
 					</p>
 				</div>
-				<div className="ticket-description flex mt-6 h-40 overflow-scroll scrollbar-default border-2 p-2 rounded-md">
+				<div className="ticket-description flex w-full h-40 mt-[1px] md:mt-6 md:h-40 overflow-scroll scrollbar-default border-2 p-2 rounded-md">
 					<p className="text-2xl break-words">
 						Description: {ticket.description}
 					</p>
 				</div>
-				<div className="buttons relative flex justify-center mt-6 w-full ">
-					<div className="w-full h-32 bg-gray-300 flex justify-around items-center rounded-md">
+				<div className="buttons relative flex justify-center mt-[10px] md:mt-10 w-full ">
+					<div className="w-full h-16 md:h-32 md:bg-gray-300 flex justify-around items-center rounded-md">
 						{ticket.status === 'Completed' ? (
 							<button
-								className="btn btn-primary"
+								className="btn btn-primary w-24 md:w-auto "
 								onClick={() => initiateReopenTicket()}
 							>
 								Reopen Ticket
 							</button>
 						) : currentPage === 'tasks' ? (
 							<button
-								className="btn btn-primary"
+								className="btn btn-primary w-24 md:w-auto"
 								onClick={() => initiateCompleteTicket()}
 							>
 								Mark Completed
 							</button>
 						) : currentPage === 'home' ? (
 							<button
-								className="btn btn-primary"
+								className="btn btn-primary w-24 md:w-auto"
 								onClick={() => initiateClaimTicket()}
 							>
 								Claim Ticket

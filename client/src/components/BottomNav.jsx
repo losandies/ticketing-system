@@ -18,6 +18,7 @@ const BottomNav = () => {
 
 	const onClick = (e) => {
 		dispatch(switchCurrentPage(e.target.id));
+
 		navigate(e.target.id);
 	};
 
@@ -29,14 +30,14 @@ const BottomNav = () => {
 	return (
 		<div className="flex justify-around items-center bg-gray-200 h-16 w-full border-t-[1px] border-gray-300 fixed bottom-0 z-10">
 			<Link
-				to="/tasks"
 				id="tasks"
+				to="/mytasks"
 				className={`flex w-1/3 h-16 items-center justify-center ${
-					currentPage === 'tasks' ? 'bg-gray-700 text-emerald-600' : null
+					currentPage === 'tasks' ? 'bg-gray-300 text-emerald-600' : null
 				}`}
 				onClick={onClick}
 			>
-				<FaTasks className="text-3xl" />
+				<FaTasks className="text-3xl" id="tasks" />
 			</Link>
 			<Link
 				to="/dashboard"
@@ -46,7 +47,7 @@ const BottomNav = () => {
 				}`}
 				onClick={onClick}
 			>
-				<ImHome className="text-3xl" />
+				<ImHome className="text-3xl" id="home" />
 			</Link>
 
 			<div className="flex w-1/3 h-16 items-center justify-center">
