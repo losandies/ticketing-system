@@ -28,7 +28,7 @@ const Home = () => {
 		<div className="h-screen w-screen bg-white">
 			<Navbar />
 			<div className="flex flex-col md:w-screen h-4/5 justify-center items-center">
-				<div className="bg-gray-300 p-4 md:p-8 rounded-3xl h-3/6 w-[85%] md:w-auto flex flex-col justify-center">
+				<div className="bg-gray-300 p-4 md:p-8 rounded-3xl h-3/6 w-[85%] flex flex-col justify-center">
 					<div className="landing-text my-6">
 						<h1 className="text-4xl md:text-8xl text-white">
 							Welcome to Strombo.
