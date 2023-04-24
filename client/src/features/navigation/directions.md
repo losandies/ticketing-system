@@ -1,3 +1,0 @@
-Create component for each tab... [home, My Tasks, Recent]
-
-create state for current page.. if current page = 'home' render home component etc...
